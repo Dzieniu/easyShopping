@@ -1,16 +1,6 @@
-# betTogheter
+# easyshopping
 
- <b> Start mongo </b> <br>
- `mongod --dbpath "path to db folder"`<br>
- 
-  <b> Start server </b> <br>
- `npm start`
- 
- 
-<b>kill process on port: </b> <br>
- `sudo netstat -tulpn | grep :27017` <br>
- `sudo kill <pid> <br>`
- 
+app which makes your shoping plan based on meals, which you can cook
 
  
  
