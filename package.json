@@ -1,5 +1,5 @@
 {
-  "name": "bettogheter",
+  "name": "easyshopping",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.15.2",
+    "concurrently": "^3.4.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
@@ -18,5 +19,9 @@
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0",
     "sweetalert": "^1.1.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1"
   }
 }

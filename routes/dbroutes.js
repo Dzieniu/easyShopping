@@ -4,9 +4,24 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var jwt = require('express-jwt');
 var User = mongoose.model('User');
+var Meal = mongoose.model('Meal');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
+router.get('/mealslist/:username', function(req,res,next){
+  Meal.find({'username': req.params.username}, function(err, meals){
+    if(err){return next(err); }
+    res.json(meals);
+  });
+});
+
+router.post('/mealslist', function(req,res,next){
+  var meal = new Meal(req.body);
+  meal.save(function(err,meals){
+    if(err){return next(err);}
+    res.json(meal);
+  });
+});
 
 router.post('/register', function(req, res, next){
   if(!req.body.username || !req.body.password){

@@ -1,6 +1,32 @@
-<a ui-sref="main.meals">State 1</a>
-<a ui-sref="main.newMeal" >State 2</a>
+<navbar>
+	<div class="sidenav">
+		<a ui-sref="main.meals">Stwórz listę zakupów</a>
+		<a ui-sref="main.newMeal">Posiłki</a>
+		<div class="loginInfo">
+			Zalogowany jako <span style="font-weight:bold">{{currentUser}}</span> <span ng-click="logout()" class="glyphicon glyphicon-log-out" aria-hidden="true" style="color:#9e42f4;cursor:pointer;"></span>
+		</div>
+		
+	</div>
+</navbar>
 
-<button ng-click="logout()"></button>
+<div ui-view class="container" style="padding-left:250px">
+</div>
 
-<div ui-view></div>
+
+        <!-- 
+<div id="leftmenu">
+	dupa
+</div>
+<div id="content">
+	<a ui-sref="main.meals">State 1</a>
+	<a ui-sref="main.newMeal" >State 2</a>
+
+	
+
+	<div ui-view></div>
+</div>
+
+ -->
+
+
+
