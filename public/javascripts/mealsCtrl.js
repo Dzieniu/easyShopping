@@ -9,6 +9,7 @@ function($scope,$location,auth,$http){
 	$scope.dayIndex=0;
 	$scope.picked = [];
 	$scope.list=[]
+	var compareType=1;
 	$scope.days=[{name:"Poniedziałek",meals:[] },
 	{name:"Wtorek",meals:[] },
 	{name:"Środa",meals:[] },
@@ -49,8 +50,16 @@ function($scope,$location,auth,$http){
 		var finalArr = [];
 		for(i=0;i<=$scope.list.length-1;i++){
 			for(j=0;j<=meal.products.length-1;j++){
-				if($scope.list[i].name==meal.products[j].name){
+				if($scope.list[i].name==meal.products[j].name && $scope.list[i].unit==meal.products[j].unit){
+					if(compareType==1){
 					$scope.list[i].count+=meal.products[j].count;
+					}
+					else{
+					$scope.list[i].count-=meal.products[j].count;
+					if($scope.list[i].count==0){
+						$scope.list.splice(i, 1);
+					}
+					}
 					arr.push(meal.products[j])
 				}
 			}
@@ -66,8 +75,6 @@ function($scope,$location,auth,$http){
 		}
 		return finalArr;
 	}	
-
-	$scope.showNewMealForm=false
 	$scope.showForm = function(){
 		if($scope.showNewMealForm==false){
 			$scope.showNewMealForm=true;
@@ -82,5 +89,18 @@ function($scope,$location,auth,$http){
 		var number = Math.floor((Math.random() * 3) + 0);
 
 		return tab[number];
+	}
+
+	$scope.removeItem = function(dayindex,mealindex){
+		compareType=0;
+
+		$scope.listCompare($scope.days[dayindex].meals[mealindex]);
+		$scope.days[dayindex].meals.splice(mealindex, 1);
+		compareType=1;
+ 
+	}
+	$scope.addSeparate = function(x,y,z){
+		console.log(y)
+		$scope.list.push({name: x, count: y, unit:z});
 	}
 }]);

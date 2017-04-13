@@ -27,6 +27,8 @@ function($scope,$location,auth,$http){
 			$scope.showNewMealForm=false;
 		}
 	}
-
+	$scope.xd =function(dupa){
+		console.log(dupa)
+	}
 
 }]);

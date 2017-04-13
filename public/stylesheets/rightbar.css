@@ -14,8 +14,33 @@
 }
 
 .hideButton{
+	cursor:pointer;
+	color:white;
 	margin-top:-1px;
 	padding:3px;
 	background:rgba(0,0,0,0.4);
 	float:left;
+}
+
+.rightBar input:first-child{
+	
+	width:90%;
+}
+.rightBar input{
+	background-color:transparent;
+	border:none;
+	border-radius:0px;
+	border-bottom:solid;
+	border-width:1px;
+	border-color:white;
+	width:44%;
+}
+
+#content span{
+	cursor:pointer;
+	color:#66ff33;
+}
+
+.product {
+    padding-bottom:10px;
 }

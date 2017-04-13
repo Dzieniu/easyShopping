@@ -1,14 +1,22 @@
-<div class="rightBar" >
+<div class="rightBar" style="">
 	<span ng-click="showright=!showright" class="glyphicon glyphicon-shopping-cart hideButton"></span>
 	<div id="content" ng-show="showright">
-		<div ng-repeat="product in list">
-				{{product.name}} / {{product.count}} / {{product.unit}} 
+		<div class="product">
+			<div  ng-repeat="product in list">
+					{{product.name}} / {{product.count}} / {{product.unit}} 
+			</div>
+		</div>
+		<div style="border-top:dotted;border-width:1px;padding-top:5px">
+			Dodaj osobny produkt
+			<input ng-model="separateName" placeholder="nazwa produktu"></input>
+			<input ng-model="separateCount" placeholder="ilość" type="number"></input>
+			<input ng-model="separateUnit" placeholder="jednostka"></input><span class="glyphicon glyphicon-plus" ng-click="addSeparate(separateName,separateCount,separateUnit)"></span>
 		</div>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-md-2" ng-repeat="meal in meals" ng-click="addToMealsList($index)">
+	<div class="col-md-2" style="position:static" ng-repeat="meal in meals" ng-click="addToMealsList($index)">
     <div class="mealHead"><img src="images/meal.png" /></div>
     <div class="mealName">{{meal.name}}</div>
 	</div>
@@ -18,12 +26,12 @@
 	<div class="col-md-12 table-header" >
 		Tygodniowy plan
 	</div>
-	<div class="col-md-1 " ng-repeat="day in days" ng-click="setDay($index)" >
+	<div class="col-md-1 " ng-repeat="day in days" ng-init="dayIndexR=$index" ng-click="setDay($index)" >
 		<div class="day-header" ng-class="{sel: $index == dayIndex}">
 			{{day.name}}
 		</div>
 		<div class="meal-element" ng-repeat="meal in day.meals track by $index">
-			{{meal.name}}
+			{{meal.name}}<span ng-click="removeItem(dayIndexR,$index)" class="glyphicon glyphicon-remove" style="color:red; float:right;margin-top:2%;cursor:pointer"></span>
 		</div>
 	</div>
 
