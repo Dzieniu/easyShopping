@@ -20,7 +20,7 @@
 	text-decoration: none;
     color: #3399ff;
 }
-.sidenav span:focus{
+.sidenav a:focus{
     color: #3399ff;
 }
 .sidenav span:nth-child(2):hover, .sidenav span:nth-child(2):focus{

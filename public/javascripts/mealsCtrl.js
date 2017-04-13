@@ -6,14 +6,24 @@ function($scope,$location,auth,$http){
 	$http.get("/mealslist/" + auth.currentUser() ).success(function(data) {
 			$scope.meals=data;
 	});
-	
+	$scope.dayIndex=0;
 	$scope.picked = [];
 	$scope.list=[]
+	$scope.days=[{name:"Poniedziałek",meals:[] },
+	{name:"Wtorek",meals:[] },
+	{name:"Środa",meals:[] },
+	{name:"Czwartek",meals:[] },
+	{name:"Piątek",meals:[] },
+	{name:"Sobota",meals:[] },
+	{name:"Niedziela",meals:[] }]
 
 	$scope.ingredients = [{name: "", count: 0, unit:""}];
 
+	$scope.setDay = function(index){
+		$scope.dayIndex=index;
+	}
 	$scope.addToMealsList = function(index){
-		$scope.picked.push($scope.meals[index]);
+		$scope.days[$scope.dayIndex].meals.push($scope.meals[index]);
 		tabs = $scope.listCompare($scope.meals[index]);
 		for(i=0;i<=tabs.length-1;i++){
 			$scope.list.push(tabs[i]);

@@ -8,12 +8,29 @@
 </div>
 
 <div class="row">
-	<div class="col-md-2" ng-repeat="meal in meals" ng-click="addToMealsList($index)" >
+	<div class="col-md-2" ng-repeat="meal in meals" ng-click="addToMealsList($index)">
     <div class="mealHead"><img src="images/meal.png" /></div>
     <div class="mealName">{{meal.name}}</div>
 	</div>
 </div>
+
+<div class="row seven-cols">
+	<div class="col-md-12 table-header" >
+		Tygodniowy plan
+	</div>
+	<div class="col-md-1 " ng-repeat="day in days" ng-click="setDay($index)" >
+		<div class="day-header" ng-class="{sel: $index == dayIndex}">
+			{{day.name}}
+		</div>
+		<div class="meal-element" ng-repeat="meal in day.meals track by $index">
+			{{meal.name}}
+		</div>
+	</div>
+
+</div>
 <!-- 
+	
+ng-repeat="meal in day.meals track by $index"
 <div class="panel panel-primary" style="">
       <div class="panel-heading">{{meal.name}}</div>
       <div class="panel-body" ng-show="showIngredients==true">
