@@ -1,45 +1,49 @@
 .sidenav {
     height: 100%; /* 100% Full-height */
-    width: 250px; /* 0 width - change this with JavaScript */
-    position: absolute; /* Stay in place */
+    width: 40px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
     left: 0;
     padding-top:20px;
-    background-color: #adadad; 
-    box-shadow: 4px 0px 9px 2px rgba(158,66,244,1);
+    background-color: #252525; 
     overflow-x: hidden; /* Disable horizontal scroll */
 }
 
 /* The navigation menu links */
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    font-size: 20px;
-    color: white;
-    display: block;
+.sidenav span {
+    color:white;padding-left:28%;cursor:pointer;
 }
 
-.sidenav a:hover, .sidenav a:focus{
+.sidenav span:hover{
 	outline: 0;
 	text-decoration: none;
-    color: #9e42f4;
-    border-left:solid;
-    border-color:#9e42f4;
+    color: #3399ff;
 }
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+.sidenav span:focus{
+    color: #3399ff;
+}
+.sidenav span:nth-child(2):hover, .sidenav span:nth-child(2):focus{
+    color: #33cc33;
+}
+.sidenav span:nth-child(2){
+    padding-top:15px;
 }
 
 .sidenav .loginInfo{
-	padding:20px;
-	color:white;
+    width: 40px;
 	position: absolute;
 	bottom:0;
+    padding-bottom:15px;
 }
-.loginInfo span{
-	color:white;
+
+.info{
+    position: fixed;
+    left: 42px;
+    font-family: 'Lato', sans-serif;
+    padding: 7px 10px 7px 10px;
+    background-color: rgb(0,0,0,0.5);
+    max-width:100px;
+    border-radius:2px;
+    color:white;
 }

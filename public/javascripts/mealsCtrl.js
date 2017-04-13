@@ -66,4 +66,11 @@ function($scope,$location,auth,$http){
 			$scope.showNewMealForm=false;
 		}
 	}
+
+	$scope.randomMealColor = function(){
+		var tab = ["#ffff4d", "#88ff4d", "#66ccff","#00ffcc"]
+		var number = Math.floor((Math.random() * 3) + 0);
+
+		return tab[number];
+	}
 }]);

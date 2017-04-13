@@ -3,35 +3,19 @@
 	top:0;
 	right:0;
 	height:auto;
-	max-height:300px;
-	overflow-y:scroll;
-	width:250px;
-}
-
-
-.visiblebutton{
-	position:absolute;
-	top:0;
-	left:-5;
 }
 
 .rightBar #content{
-
-	background:white;
-	border:solid;
-	border-width: 0px 0px 2px 2px;
-	border-color:#9e42f4;
-	border-radius:0px 0px 0px 5px;
+	color:white;
+	background:rgba(0,0,0,0.4);
 	padding: 10px 0px 10px 10px;
+	width:230px;
+	margin-left:20px;
 }
 
-.rightBar #hideButton{
-	color:white;
-	padding:0px 2px 0px 2px;
-	float:right;
-	background:#9e42f4;
-	border:solid;
-	border-width:2px;
-	border-color:#9e42f4;
-	border-radius:0px 0px 5px 5px;
+.hideButton{
+	margin-top:-1px;
+	padding:3px;
+	background:rgba(0,0,0,0.4);
+	float:left;
 }

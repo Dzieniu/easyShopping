@@ -1,32 +1,14 @@
 <navbar>
 	<div class="sidenav">
-		<a ui-sref="main.meals">Stwórz listę zakupów</a>
-		<a ui-sref="main.newMeal">Posiłki</a>
+		<span ng-mouseover="show1=true" ng-mouseleave="show1=false" ui-sref="main.meals" class=" glyphicon glyphicon-list-alt"><div ng-show="show1" class="info">Stwórz listę</div></span>
+		<span ng-mouseover="show2=true" ng-mouseleave="show2=false" ui-sref="main.newMeal" class=" glyphicon glyphicon-leaf"><div ng-show="show2" class="info">Posiłki</div></span>
+
 		<div class="loginInfo">
-			Zalogowany jako <span style="font-weight:bold">{{currentUser}}</span> <span ng-click="logout()" class="glyphicon glyphicon-log-out" aria-hidden="true" style="color:#9e42f4;cursor:pointer;"></span>
+			<span ng-click="logout()" class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
 		</div>
 		
 	</div>
 </navbar>
 
-<div ui-view class="container" style="padding-left:250px">
+<div ui-view class="container" style="padding-left:55px;margin-top:30px;">
 </div>
-
-
-        <!-- 
-<div id="leftmenu">
-	dupa
-</div>
-<div id="content">
-	<a ui-sref="main.meals">State 1</a>
-	<a ui-sref="main.newMeal" >State 2</a>
-
-	
-
-	<div ui-view></div>
-</div>
-
- -->
-
-
-

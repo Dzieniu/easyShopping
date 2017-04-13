@@ -1,28 +1,29 @@
 <div class="rightBar" >
-	<div id="content" >
+	<span ng-click="showright=!showright" class="glyphicon glyphicon-shopping-cart hideButton"></span>
+	<div id="content" ng-show="showright">
 		<div ng-repeat="product in list">
 				{{product.name}} / {{product.count}} / {{product.unit}} 
 		</div>
 	</div>
-	<div id="hideButton" ng-click="dupa=!dupa" >
-		<span class="glyphicon glyphicon-th-list"></span>
-	</div>
 </div>
 
-<div >
-	<div class="col-md-3" ng-repeat="meal in meals" ng-click="addToMealsList($index)" >
-    <div class="panel panel-primary" style="">
+<div class="row">
+	<div class="col-md-2" ng-repeat="meal in meals" ng-click="addToMealsList($index)" >
+    <div class="mealHead"><img src="images/meal.png" /></div>
+    <div class="mealName">{{meal.name}}</div>
+	</div>
+</div>
+<!-- 
+<div class="panel panel-primary" style="">
       <div class="panel-heading">{{meal.name}}</div>
       <div class="panel-body" ng-show="showIngredients==true">
 				<ul ng-repeat="item in meal.products">
 				  <li>{{item.name}}</li>
 				</ul>
       </div>
-    </div>
-	</div>
-</div>
-
-<div  >
+    </div> -->
+<!-- 
+<div class="row" >
 	<div class="col-md-12">
 		<h2 >Wybrane posiłki</h2>
 		<div class="col-md-12" ng-repeat="item in picked track by $index">
@@ -30,3 +31,4 @@
 		</div>
 	</div>
 </div> 
+ -->

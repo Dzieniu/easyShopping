@@ -1,0 +1,18 @@
+.mealHead{
+	background-color:#ffff4d;
+	width:100%;
+	height:150px;
+	margin:auto;
+	text-align:center;
+}
+.mealHead img{
+	margin-top:30px;
+	height:60%;
+}
+.mealName{
+	background-color:white;
+	width:100%;
+	padding: 10px;
+	box-shadow: 2px 12px 7px -7px rgba(161,161,161,0.46);
+	margin-bottom:10px;
+}
