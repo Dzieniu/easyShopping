@@ -10,14 +10,15 @@
 	background:rgba(0,0,0,0.4);
 	padding: 10px 0px 10px 10px;
 	width:230px;
-	margin-left:20px;
+	margin-left:32px;
 }
 
 .hideButton{
+	font-size:22px;
 	cursor:pointer;
 	color:white;
 	margin-top:-1px;
-	padding:3px;
+	padding:5px;
 	background:rgba(0,0,0,0.4);
 	float:left;
 }

@@ -1,47 +1,88 @@
+<header>
 <div class="container-fluid login">
-  <div class="col-md-12 top">
-    <span style="margin:auto">easyShopping</span>
+  <div class="content" ng-hide="showRegister==true">
+    <div class="headTitle">LOGOWANIE</div>
+    <div ng-click="showRegister=true" style="cursor:pointer">Załóż konto</div>
+    <form ng-submit="logIn()">
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" ng-model="user.username" placeholder="Nazwa użytkownika">
+      </div>
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <div class="input-group-addon"><span class=" glyphicon glyphicon-lock"></span></div>
+        <input type="password" class="form-control" id="inlineFormInputGroup" ng-model="user.password" placeholder="Hasło">
+      </div>
+      <button type="submit" ui-sref-opts="{reload:true}">Zaloguj się</button>
+    </form>
   </div>
-  <div class="content" ng-hide="showLogin==true">
-    <h1>Zarejestruj się już teraz!</h1>
-    <span ng-click="showLogin=true">Mam już konto</span>
-    <form ng-submit="register()" style="text-align:center">
-      <input type="text" placeholder="Nazwa użytkownika" ng-model="userRegister.username" >
-      <input type="password" placeholder="Hasło" ng-model="userRegister.password" >
-      <h3>
-      <button type="submit" ui-sref-opts="{reload:true}" ><b>Zaloguj</b></button>
-      </h3>
-    </form>
-  </div> 
 
-  <div class="content" ng-show="showLogin==true">
-    <h1>Zaloguj się</h1>
-    <form ng-submit="logIn()" style="text-align:center">
-      <input type="text" placeholder="Nazwa użytkownika" ng-model="user.username" >
-      <input type="password" placeholder="Hasło" ng-model="user.password" >
-      <h3>
-      <button type="submit" ui-sref-opts="{reload:true}" ><b>Zaloguj</b></button>
-      </h3>
-    </form>
-  </div> 
 
+  <div class="content" ng-show="showRegister==true">
+    <div class="headTitle">REJESTRACJA</div>
+    <div ng-click="showRegister=false"  style="cursor:pointer">Mam już konto</div>
+    <form ng-submit="register()">
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.username" placeholder="Nazwa użytkownika">
+      </div>
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <div class="input-group-addon"><span class=" glyphicon glyphicon-lock"></span></div>
+        <input type="password" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.password" placeholder="Hasło">
+      </div>
+      <button type="submit" ui-sref-opts="{reload:true}">Zarejestruj</button>
+    </form>
+  </div>
 </div>
-<div class="container description">
+  </header>
+
+<main>
+<section>
+<div class="container-fluid description">
+  <div class="headTitle" style="color:black;margin-bottom:50px">PO CO/DLACZEGO/DLA KOGO</div>
   <div class="row">
     <div class="col-md-3">
-      <img src="images/choose.jpg" />
+    <img src="/images/make.png"/>
+      <div class="imgtitle">Robisz zakupy raz w tygodniu...</div>
     </div>
     <div class="col-md-3">
-      <img src="images/enter.jpeg" />
+    <img src="/images/think.png"/>
+      <div class="imgtitle">...co tydzień musisz planować co zjeść i robić listę zakupów...</div>
     </div>
     <div class="col-md-3">
-      <img src="images/make.jpg" />
+    <img src="/images/angry.png"/>
+      <div class="imgtitle">... a nie lubisz tego robić?</div>
     </div>
     <div class="col-md-3">
-      <img src="images/grocery.jpg" />
+    <img src="/images/end.png"/>
+      <div class="imgtitle">Koniec z tym!<br> Dzięki tej aplikacji ułatwisz sobie ten proces!</div>
     </div>
   </div>
 </div>
+</section>
+
+<section>
+<div class="container-fluid howitworks">
+  <div class="headTitle" style="color:white;margin-bottom:50px">JAK DZIAŁA APLIKACJA?</div>
+      <div class="col-md-12" style="margin-bottom:50px">
+        <div ng-click="chooseStep(0)" ng-class="{startRotate:animationIndex==0, finish:animationIndex!=0}" class="circleborder">1.</div>
+        <div ng-click="chooseStep(1)" ng-class="{startRotate:animationIndex==1, finish:animationIndex!=1}" class="circleborder">2.</div>
+        <div ng-click="chooseStep(2)" ng-class="{startRotate:animationIndex==2, finish:animationIndex!=2}" class="circleborder">3.</div>
+        <div ng-click="chooseStep(3)" ng-class="{startRotate:animationIndex==3, finish:animationIndex!=3}" class="circleborder">4.</div>
+        <div ng-click="chooseStep(4)" ng-class="{startRotate:animationIndex==4, finish:animationIndex!=4}" class="circleborder">5.</div>
+      </div>
+      <div class="col-md-12">
+        <h4>{{currentText}}</h4>
+        <img ng-src="{{currentImage}}" style="height:60%;width:60%" />
+      </div>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="container-fluid footer">
+    easyShopping - Copyright &copy; 2017 Konrad Dzień
+  </div>
+</footer>
 
 
 

@@ -1,7 +1,8 @@
 <navbar>
 	<div class="sidenav">
-		<span ng-mouseover="show1=true" ng-mouseleave="show1=false" ui-sref="main.meals" class=" glyphicon glyphicon-list-alt"><div ng-show="show1" class="info">Stwórz listę</div></span>
-		<span ng-mouseover="show2=true" ng-mouseleave="show2=false" ui-sref="main.newMeal" class=" glyphicon glyphicon-leaf"><div ng-show="show2" class="info">Posiłki</div></span>
+		<span  ng-click="setActive()" ng-mouseover="show1=true" ng-mouseleave="show1=false" ui-sref="main.meals" class=" glyphicon glyphicon-list-alt" ng-class="{listActive: list==true}"><div ng-show="show1" class="info">Stwórz listę</div></span>
+
+		<span  ng-click="setActive()" ng-mouseover="show2=true" ng-mouseleave="show2=false" ui-sref="main.newMeal" class=" glyphicon glyphicon-leaf" ng-class="{mealsActive: meals==true}" ><div ng-show="show2" class="info">Posiłki</div></span>
 
 		<div class="loginInfo">
 			<span ng-click="logout()" class="glyphicon glyphicon-log-out" aria-hidden="true"></span>

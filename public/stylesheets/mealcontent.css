@@ -57,6 +57,10 @@
 	padding:15px;
 	letter-spacing: -0.5px
 }
+.table-footer{
+	text-align:center;font-size:17px;font-weight:bold;
+	padding:15px;
+}
 
 .day-header{
 

@@ -1,12 +1,17 @@
 angular.module('easyshopping').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
                 // For any unmatched url, send to /business
-                $urlRouterProvider.otherwise("/login")
+                $urlRouterProvider.otherwise("/welcome")
                  
                 $stateProvider
                         .state('main', {
                             url: "/main",
                             templateUrl: "main",
-                            controller: "mainCtrl"
+                            controller: "mainCtrl",
+                            onEnter: ['$state', 'auth', function($state, auth){
+                            if(!auth.isLoggedIn()){
+                              $state.go('landingPage');
+                            }
+                          }]
                         })
                         .state('main.meals', {
                             url: "/meals",
@@ -18,25 +23,15 @@ angular.module('easyshopping').config(['$stateProvider', '$urlRouterProvider', f
                             templateUrl: "newMeal",
                             controller: "newMealCtrl"
                         })
+
                         .state('login', {
-                          url: '/login',
+                          url: '/welcome',
                           templateUrl: 'landingPage',
                           controller: 'AuthCtrl',
                           onEnter: ['$state', 'auth', function($state, auth){
                             if(auth.isLoggedIn()){
-                              $state.go('main');
+                              $state.go('main.meals');
                             }
                           }]
                         })
-                        .state('register', {
-                          url: '/register',
-                          templateUrl: 'register',
-                          controller: 'AuthCtrl',
-                          onEnter: ['$state', 'auth', function($state, auth){
-                            if(auth.isLoggedIn()){
-                              $state.go('main');
-                            }
-                          }]
-                        });
-
             }]);

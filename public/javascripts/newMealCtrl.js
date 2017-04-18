@@ -10,6 +10,11 @@ function($scope,$location,auth,$http){
 	$scope.addMeal = function(){
 		postData = { name:$scope.newMealName,username:auth.currentUser(),products:$scope.ingredients};
 			$http.post("/mealslist", postData).success(function(data2,status) {
+				swal(
+					  'Dodałeś posiłek',
+					  'Dodaj kolejny, lub przejdź do układania planu',
+					  'success'
+					)
 			});
 	}
 	$scope.addIngredient = function(){
@@ -26,9 +31,6 @@ function($scope,$location,auth,$http){
 		else{
 			$scope.showNewMealForm=false;
 		}
-	}
-	$scope.xd =function(dupa){
-		console.log(dupa)
-	}
+	};
 
 }]);
