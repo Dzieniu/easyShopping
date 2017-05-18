@@ -6,15 +6,17 @@
   </div>
   <form ng-repeat="ingredient in ingredients" class="form-inline" style="margin-top:20px">
   	<label>Produkt</label>
-  	<input ng-model="ingredients[$index].name" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" >
+  	<input ng-model="ingredients[$index].name" type="text"  class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" >
   	<label>Ilość</label>
-  	<input ng-model="ingredients[$index].count" type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" >
+  	<input ng-model="ingredients[$index].count" type="number" min="0" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" >
   	<label>Jednostka</label>
   	<select ng-model="ingredients[$index].unit" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-	    <option selected>Wybierz...</option>
-	    <option value="kg">kg</option>
 	    <option value="sztuka">sztuka</option>
-	    <option value="kiść">kiść</option>
+      <option value="g">g</option>
+	    <option value="dag">dkg</option>
+      <option value="kg">kg</option>
+	    <option value="ml">ml</option>
+      <option value="l">l</option>
   	</select>
   </form>
   <span class="glyphicon glyphicon-plus" ng-click="addIngredient()" style="color:#33cc33; cursor:pointer"></span>

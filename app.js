@@ -14,8 +14,8 @@ var passport = require('passport');
 
 var app = express();
 
-// mongoose.connect('mongodb://localhost/easyshopping');
-mongoose.connect('mongodb://heroku_8qmz9flv:sss18gskc6sm8lctdknj3qg6a@ds163020.mlab.com:63020/heroku_8qmz9flv');
+mongoose.connect('mongodb://localhost/easyshopping');
+// mongoose.connect('mongodb://heroku_8qmz9flv:sss18gskc6sm8lctdknj3qg6a@ds163020.mlab.com:63020/heroku_8qmz9flv');
 
 var dbRoutes = require('./routes/dbroutes');
 
