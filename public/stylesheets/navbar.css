@@ -10,9 +10,8 @@
     overflow-x: hidden; /* Disable horizontal scroll */
 }
 
-/* The navigation menu links */
 .sidenav span {
-    color:white;padding-left:28%;cursor:pointer;
+    color:white;padding-left:28%;cursor:pointer; padding-bottom:15px;
 }
 
 .sidenav span:hover{
@@ -20,14 +19,8 @@
 	text-decoration: none;
     color: #3399ff;
 }
-.sidenav a:focus{
-    color: #3399ff;
-}
-.sidenav span:nth-child(2):hover, .sidenav span:nth-child(2):focus{
+.sidenav span:nth-child(2):hover{
     color: #33cc33;
-}
-.sidenav span:nth-child(2){
-    padding-top:15px;
 }
 
 .sidenav .loginInfo{
@@ -42,16 +35,12 @@
     left: 42px;
     font-family: 'Lato', sans-serif;
     padding: 7px 10px 7px 10px;
-    background-color: rgb(0,0,0,0.5);
-    max-width:100px;
+    background-color: rgba(0,0,0,0.5);
+    max-width:120px;
     border-radius:2px;
     color:white;
 }
 
 .listActive{
     color: #3399ff;
-}
-
-.mealsActive{
-    color: #33cc33;
 }

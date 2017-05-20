@@ -1,0 +1,12 @@
+<div class="mealName edit" ng-repeat="meal in meals" ng-init="mealindex=$index">
+	{{meal.name}}
+	<span id="showContent" class="glyphicon glyphicon-chevron-down" ng-model="dupa" ng-click="arrowClicked(mealindex); showme=!showme" style="float:right;top:3px"></span>
+	<div ng-show="showme">
+		<div ng-repeat="product in meal.products"  >
+			{{product.name}} - {{product.count}} - {{product.unit}}
+			<span  class="glyphicon glyphicon-minus edititem" style="color:red"></span>
+			<span  class="glyphicon glyphicon-edit edititem" style="color:lightgreen"></span>
+		</div>	
+		<button ng-click="removeMeal(mealindex)">Usuń posiłek</button>
+	</div>
+</div>

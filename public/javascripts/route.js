@@ -23,6 +23,11 @@ angular.module('easyshopping').config(['$stateProvider', '$urlRouterProvider', f
                             templateUrl: "newMeal",
                             controller: "newMealCtrl"
                         })
+                        .state('main.editMeals', {
+                            url: "/editmeals",
+                            templateUrl: "editMeals",
+                            controller: "editMealsCtrl"
+                        })
 
                         .state('login', {
                           url: '/welcome',
