@@ -1,11 +1,12 @@
 angular.module('easyshopping').controller('mealsCtrl', [
-'$scope','$location','auth', '$http',
+'$scope','$location','auth', '$http','$q',
 
-function($scope,$location,auth,$http){
-
-	$http.get("/mealslist/" + auth.currentUser() ).success(function(data) {
+function($scope,$location,auth,$http,$q){
+	$scope.begin=0;
+	$http.get("/mealslist/"+auth.currentUser()).success(function(data){
 			$scope.meals=data;
-	});
+			$scope.begin=0-$scope.meals.length;
+		});
 	$scope.dayIndex=0;
 	$scope.picked = [];
 	$scope.list=[]
@@ -17,22 +18,22 @@ function($scope,$location,auth,$http){
 	{name:"Piątek",meals:[] },
 	{name:"Sobota",meals:[] },
 	{name:"Niedziela",meals:[] }]
+	
 
 	$scope.ingredients = [{name: "", count: 0, unit:""}];
 
 	$scope.setDay = function(index){
 		$scope.dayIndex=index;
 	}
-	$scope.addToMealsList = function(index){
-		$scope.days[$scope.dayIndex].meals.push($scope.meals[index]);
-		tabs = $scope.listCompare($scope.meals[index]);
+	$scope.addToMealsList = function(meal){
+		$scope.days[$scope.dayIndex].meals.push(meal);
+		tabs = $scope.listCompare(meal);
 		for(i=0;i<=tabs.length-1;i++){
 			$scope.list.push(tabs[i]);
 		}
 	}
 	$scope.addMeal = function(){
 		$scope.meals.push({name: $scope.newMealName, products: $scope.ingredients});
-		console.log($scope.meals);
 		$scope.ingredients=[{name: "", value: 0, unit:""}];
 		$scope.newMealName=""
 	}
@@ -84,11 +85,13 @@ function($scope,$location,auth,$http){
 		}
 	}
 
-	$scope.randomMealColor = function(){
-		var tab = ["#ffff4d", "#88ff4d", "#66ccff","#00ffcc"]
-		var number = Math.floor((Math.random() * 3) + 0);
+	$scope.moveCounter=0;
+	
+	$scope.moveList = function(direction){
 
-		return tab[number];
+		$scope.listEnd=Math.floor($scope.meals.length/6);
+		if(direction==='left' && $scope.begin!=(0-$scope.meals.length)) {$scope.begin-=6;$scope.moveCounter--;}
+		else if(direction==='right' && $scope.moveCounter!=$scope.listEnd) {$scope.begin+=6; $scope.moveCounter++;}
 	}
 
 	$scope.removeItem = function(dayindex,mealindex){
@@ -100,7 +103,13 @@ function($scope,$location,auth,$http){
  
 	}
 	$scope.addSeparate = function(x,y,z){
-		console.log(y)
 		$scope.list.push({name: x, count: y, unit:z});
 	}
+
+	$scope.setX = function(){
+		return 0;
+	}
+	$scope.setY = function(){
+		return 6;
+	}	
 }]);

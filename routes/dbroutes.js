@@ -5,6 +5,7 @@ var passport = require('passport');
 var jwt = require('express-jwt');
 var User = mongoose.model('User');
 var Meal = mongoose.model('Meal');
+var mongodb = require('mongodb');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
@@ -20,6 +21,17 @@ router.post('/mealslist', function(req,res,next){
   meal.save(function(err,meals){
     if(err){return next(err);}
     res.json(meal);
+  });
+});
+
+router.delete('/mealslist/delete/:objid', function(req,res,next){
+  Meal.findById(req.params.objid,function(err,meal){
+    if(err) {return next(err);}
+    if(!meal) {return res.send(404);}
+    meal.remove(function(err){
+      if(err) {return handleError(res,err);}
+      return res.send(204);
+    });
   });
 });
 

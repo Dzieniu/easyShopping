@@ -7,10 +7,12 @@ function($scope,auth,$http){
 	$scope.logout = auth.logOut;
 	$scope.meals = new Array();
 
-	$http.get("/mealslist/" + auth.currentUser() ).success(function(data) {
+	$scope.refresh=function(){
+		$http.get("/mealslist/"+auth.currentUser()).success(function(data){
 			$scope.meals=data;
-			console.log($scope.meals);
-	});
+		});
+	};
+	$scope.refresh();
 
 	$scope.arrowClicked = function(index){
 		$scope.dupa=true;
@@ -23,10 +25,12 @@ function($scope,auth,$http){
 		item.style.transform = `rotate(180deg)`;
 	};
 
-	$scope.removeMeal = function(index){
-		console.log(index);
+	
+	$scope.removeMeal = function(mealobj){
+
+
 		swal({
-			title: 'Na pewno chcesz usunąć posiłek ' + '<i>' + $scope.meals[index].name +'?',
+			title: 'Na pewno chcesz usunąć posiłek ' + '<i>' + mealobj.name +'?',
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -34,6 +38,9 @@ function($scope,auth,$http){
 			confirmButtonText: 'Tak',
 			cancelButtonText: 'Nie'
 		}).then(function (){
+			$http.delete("/mealslist/delete/"+mealobj._id).then(function(response){
+				$scope.refresh();
+			});
 			swal(
 				'Zrobione!',
 				'Posiłek został usunięty.',

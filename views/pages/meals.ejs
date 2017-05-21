@@ -8,18 +8,24 @@
 		</div>
 		<div style="border-top:dotted;border-width:1px;padding-top:5px">
 			Dodaj osobny produkt
-			<input ng-model="separateName" placeholder="nazwa produktu"></input>
-			<input ng-model="separateCount" placeholder="ilość" type="number"></input>
-			<input ng-model="separateUnit" placeholder="jednostka"></input><span class="glyphicon glyphicon-plus" ng-click="addSeparate(separateName,separateCount,separateUnit)"></span>
+			<input class="rightBarinput" ng-model="separateName" placeholder="nazwa produktu"></input>
+			<input class="rightBarinput"  ng-model="separateCount" placeholder="ilość" type="number"></input>
+			<input class="rightBarinput" ng-model="separateUnit" placeholder="jednostka"></input><span class="glyphicon glyphicon-plus" ng-click="addSeparate(separateName,separateCount,separateUnit)"></span>
 		</div>
 	</div>
 </div>
 
 <div class="row">
 	<div ng-if="meals.length==0" style="font-size:17px;font-weight:bold"> Nie wprowadziłeś żadnych posiłków. Dodaj je, by móc ułożyć plan!</div>
-	<div class="col-md-2" style="position:static" ng-repeat="meal in meals" ng-click="addToMealsList($index)">
-    	<div class="mealHead"><img src="images/meal.png" /></div>
-    	<div class="mealName">{{meal.name}}</div>
+	<div ng-hide="meals.length==0" id="searchInput"><input class="removeOutline" ng-model="searchtext" placeholder="Wyszukaj posiłek"></input></div>
+	<div id="listWrapper">
+		
+		<div class="col-md-2 listitem" ng-repeat="meal in meals | filter:searchtext | limitTo:begin | limitTo: 6 " ng-click="addToMealsList(meal)">
+	    	<div class="mealHead" style="background-color: {{meal.color}}"><img src="images/meal.png" /></div>
+	    	<div class="mealName">{{meal.name}}</div>
+		</div>
+		<span ng-hide="moveCounter==0 || searchtext" class="glyphicon glyphicon-chevron-left left" ng-click="moveList('left')"></span>
+		<span ng-hide="moveCounter==listEnd || searchtext || meals.length==6" class="glyphicon glyphicon-chevron-right right" ng-click="moveList('right')"></span>
 	</div>
 </div>
 
@@ -39,24 +45,3 @@
 		Zacznij układać swój plan
 	</div>
 </div>
-<!-- 
-	
-ng-repeat="meal in day.meals track by $index"
-<div class="panel panel-primary" style="">
-      <div class="panel-heading">{{meal.name}}</div>
-      <div class="panel-body" ng-show="showIngredients==true">
-				<ul ng-repeat="item in meal.products">
-				  <li>{{item.name}}</li>
-				</ul>
-      </div>
-    </div> -->
-<!-- 
-<div class="row" >
-	<div class="col-md-12">
-		<h2 >Wybrane posiłki</h2>
-		<div class="col-md-12" ng-repeat="item in picked track by $index">
-			{{item.name}} 
-		</div>
-	</div>
-</div> 
- -->
