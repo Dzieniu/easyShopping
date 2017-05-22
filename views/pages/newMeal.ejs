@@ -4,18 +4,18 @@
     <div class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></div>
     <input type="text" class="form-control "  id="inlineFormInputGroup" ng-model="newMealName" placeholder="Nazwa posiłku">
   </div>
-  <form ng-repeat="ingredient in ingredients" class="form-inline" style="margin-top:20px">
+  <form ng-repeat="ingredient in ingredients" class="col-md-12 col-xs-12 form-inline" style="margin-top:20px">
     <div class="col-md-4">
   	 <label style="float:left">Produkt</label>
-  	 <input  ng-model="ingredients[$index].name" type="text"  class="form-control mb-2 mr-sm-2 mb-sm-0 " style="width:100%" id="inlineFormInput" >
+  	 <input  ng-model="ingredients[$index].name" type="text"  class="form-control" style="width:100%" id="inlineFormInput" >
   	</div>
     <div class="col-md-4">
       <label>Ilość</label>
-  	  <input ng-model="ingredients[$index].count" type="number" min="0" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" >
+  	  <input ng-model="ingredients[$index].count" type="number" min="0" class="form-control" id="inlineFormInput" >
   	</div>
     <div class="col-md-4">
       <label>Jednostka</label>
-    	<select ng-model="ingredients[$index].unit" class="custom-select mb-2 mr-sm-2 mb-sm-0 unitSelect" id="inlineFormCustomSelect">
+    	<select ng-model="ingredients[$index].unit" class="custom-select unitSelect" id="inlineFormCustomSelect">
 	     <option value="sztuka">sztuka</option>
        <option value="g">g</option>
 	     <option value="dag">dkg</option>
