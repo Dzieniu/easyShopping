@@ -16,10 +16,12 @@ function($scope,$location,auth,$http){
 					  'success'
 					)
 			});
+		$scope.ingredients = [{name: "",count: 0,unit: "" }];
+		$scope.newMealName = ""
 	}
 	$scope.addIngredient = function(){
 		var newItem = $scope.ingredients.length+1;
-   		$scope.ingredients.push({name: "", value: 0, unit:""});
+   		$scope.ingredients.push({name: "", count: 0, unit:""});
    	}
 
 	$scope.showNewMealForm=false
