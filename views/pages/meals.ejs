@@ -25,7 +25,7 @@
 	    	<div class="mealName">{{meal.name}}</div>
 		</div>
 		<span ng-hide="moveCounter==0 || searchtext" class="glyphicon glyphicon-chevron-left left" ng-click="moveList('left')"></span>
-		<span ng-hide="moveCounter==listEnd || searchtext || meals.length==6" class="glyphicon glyphicon-chevron-right right" ng-click="moveList('right')"></span>
+		<span ng-hide="moveCounter==listEnd || searchtext || meals.length<=6" class="glyphicon glyphicon-chevron-right right" ng-click="moveList('right')"></span>
 	</div>
 </div>
 
