@@ -27,6 +27,6 @@
   </form>
   <span class="glyphicon glyphicon-plus" title="Dodaj kolejny produkt" ng-click="addIngredient()" style="color:#33cc33; cursor:pointer;float: right;padding-top: 10px;"></span>
   <div>
-  <button  class="btn btn-success" ng-click="addMeal()" style="float:left;margin-top:20px;background-color: #33cc33;border-color: #33cc33">Dodaj posiłek</button>
+  <button  class="btn btn-success" ng-disabled="!newMealName" ng-click="addMeal()" style="float:left;margin-top:20px;background-color: #33cc33;border-color: #33cc33">Dodaj posiłek</button>
   </div>
 </div>
