@@ -18,10 +18,19 @@ router.get('/mealslist/:username', function(req,res,next){
 
 router.post('/mealslist', function(req,res,next){
   var meal = new Meal(req.body);
-  meal.save(function(err,meals){
-    if(err){return next(err);}
-    res.json(meal);
-  });
+
+  req.checkBody("name", "Wprowadz nazwę posiłku").exists().notEmpty();
+  var errors = req.validationErrors();
+
+  if (errors) {
+      res.status(403).send('Wprowadz nazwę posiłku');
+  } else {
+      meal.save(function(err,meals){
+        if(err){return next(err);}
+        res.json(meal);
+      });
+  }
+
 });
 
 router.delete('/mealslist/delete/:objid', function(req,res,next){
@@ -68,6 +77,8 @@ router.post('/login', function(req, res, next){
     }
   })(req, res, next);
 });
+
+
 
 
 module.exports = router;

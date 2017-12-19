@@ -1,32 +1,34 @@
-<div class="row formcontent" style="margin:0px;margin:auto;">
-	<h3 style="padding-bottom:15px;margin-top:5px;font-size:20px">Dodaj posiłek</h3>
-	<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <div class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></div>
-    <input type="text" class="form-control "  id="inlineFormInputGroup" ng-model="newMealName" placeholder="Nazwa posiłku">
-  </div>
-  <form ng-repeat="ingredient in ingredients" class="col-md-12 col-xs-12 form-inline" style="margin-top:20px">
-    <div class="col-md-4">
-  	 <label style="float:left">Produkt</label>
-  	 <input  ng-model="ingredients[$index].name" type="text"  class="form-control" style="width:100%" id="inlineFormInput" >
-  	</div>
-    <div class="col-md-4">
-      <label>Ilość</label>
-  	  <input ng-model="ingredients[$index].count" type="number" min="0" class="form-control" id="inlineFormInput" >
-  	</div>
-    <div class="col-md-4">
-      <label>Jednostka</label>
-    	<select ng-model="ingredients[$index].unit" class="custom-select unitSelect" id="inlineFormCustomSelect">
-	     <option value="sztuka">sztuka</option>
-       <option value="g">g</option>
-	     <option value="dag">dkg</option>
-        <option value="kg">kg</option>
-	     <option value="ml">ml</option>
-       <option value="l">l</option>
-  	 </select>
+<div class="row" id="formcontent">
+<form>
+   <input ng-model="newMealName" id="mealNameInput" value="Nazwa posiłku"></input>
+  <div id="ingredientsTitle">Składniki</div>
+  <div id="ingredientsList">
+<!-- lista -->
+  <div ng-repeat="ingredient in ingredients">
+    <div class="ingredientsRow">
+      <div class="col-md-4" id="ingredientName">
+        <input ng-model="ingredients[$index].name"></input>
+      </div>
+      <div class="col-md-4" id="ingreditenUnit">
+        <select ng-model="ingredients[$index].unit">
+          <option value="sztuka">sztuka</option>
+          <option value="g">g</option>
+          <option value="dag">dkg</option>
+          <option value="kg">kg</option>
+          <option value="ml">ml</option>
+          <option value="l">l</option>
+        </select>
+      </div>
+      <div class="col-md-4" id="ingredientNumber">
+        <input  ng-model="ingredients[$index].count" type="number" min="0">
+      </div>
     </div>
-  </form>
-  <span class="glyphicon glyphicon-plus" title="Dodaj kolejny produkt" ng-click="addIngredient()" style="color:#33cc33; cursor:pointer;float: right;padding-top: 10px;"></span>
-  <div>
-  <button  class="btn btn-success" ng-click="addMeal()" style="float:left;margin-top:20px;background-color: #33cc33;border-color: #33cc33">Dodaj posiłek</button>
+<!--     lista -->
   </div>
+  </div>
+
+  <i ng-click="addIngredient()"  class="fa fa-plus-circle" aria-hidden="true" style="padding-top:5px;float:right"></i>
+</form>
+  <button  class="btn btn-success" ng-click="addMeal()" >Dodaj posiłek</button>
 </div>
+

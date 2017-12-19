@@ -1,17 +1,10 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
+var gulp = require('gulp');  
+var nodemon = require('gulp-nodemon');  
 
-gulp.task('reload', function(){
-	browserSync.reload();
+gulp.task('server',function(){  
+    nodemon({
+        'script': 'app.js',
+    });
 });
 
-gulp.task('serve', function(){
-
-	browserSync({
-		server: 'views/pages'
-	});
-
-	gulp.watch('views/pages/*.ejs', ['reload']);
-});
-
-gulp.task('default', ['serve']);
+gulp.task('serve', ['server']);  
