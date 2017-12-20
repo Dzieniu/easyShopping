@@ -1,7 +1,11 @@
+<div class="editMealsChoice">
+<div ng-click="editChoice($event,'add')" id="addChoices" class="green">Dodaj nowy posiłek</div>
+<div ng-click="editChoice($event,'edit')" id="editChoices">Edytuj istniejący posiłek</div>
+</div>
 <div class="row" id="formcontent">
 <form>
    <input ng-model="newMealName" id="mealNameInput" value="Nazwa posiłku"></input>
-  <div id="ingredientsTitle">Składniki</div>
+  <div id="ingredientsTitle"><div>Nazwa składniku</div><div>Typ</div><div>Ilość</div></div>
   <div id="ingredientsList">
 <!-- lista -->
   <div ng-repeat="ingredient in ingredients">
@@ -20,15 +24,32 @@
         </select>
       </div>
       <div class="col-md-4" id="ingredientNumber">
-        <input  ng-model="ingredients[$index].count" type="number" min="0">
+        <input  ng-model="ingredients[$index].count" type="number" min="1">
       </div>
     </div>
 <!--     lista -->
   </div>
   </div>
 
+  <i ng-click="removeIngredient()" class="fa fa-minus-circle" aria-hidden="true" style=";padding-left:5px; padding-top:5px;float:right; color:red"></i>
   <i ng-click="addIngredient()"  class="fa fa-plus-circle" aria-hidden="true" style="padding-top:5px;float:right"></i>
 </form>
-  <button  class="btn btn-success" ng-click="addMeal()" >Dodaj posiłek</button>
+  <button  class="btn btn-success" ng-click="addMeal()" >{{choiceButton}}</button>
 </div>
 
+
+<div id="allMeals">
+  <div ng-if="meals.length==0" style="text-align:center;font-size:17px;font-weight:bold"> Nie masz żadnych posiłków.</div>
+  <div class="mealName edit" ng-repeat="meal in meals" ng-init="mealindex=$index">
+    <div style="    display: inline-block;
+    margin: 7px 10px 7px 10px;">{{meal.name}}</div>
+    <div ng-model="clicked" ng-click="arrowClicked(mealindex); showme=!showme" class="arrowDiv"><span id="showContent" class="glyphicon glyphicon-chevron-down"></span></div>
+    <div ng-show="showme" style="padding:0px 0px 10px 10px;">
+      <div ng-repeat="product in meal.products"  >
+        {{product.name}} - {{product.count}} - {{product.unit}}
+      </div>  
+      <button ng-click="removeMeal(meal)">Usuń posiłek</button>
+      <button ng-click="editMeal(meal)" style="background-color:#30a9ff">Edytuj posiłek</button>
+    </div>
+  </div>
+</div>

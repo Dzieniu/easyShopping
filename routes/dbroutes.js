@@ -33,8 +33,8 @@ router.post('/mealslist', function(req,res,next){
 
 });
 
-router.delete('/mealslist/delete/:objid', function(req,res,next){
-  Meal.findById(req.params.objid,function(err,meal){
+router.delete('/mealslist/:id', function(req,res,next){
+  Meal.findById(req.params.id,function(err,meal){
     if(err) {return next(err);}
     if(!meal) {return res.send(404);}
     meal.remove(function(err){
@@ -43,6 +43,16 @@ router.delete('/mealslist/delete/:objid', function(req,res,next){
     });
   });
 });
+
+router.put('/mealslist/:id', function(req,res,next){
+  var newName=req.body.name;
+  var newProducts=req.body.products;
+  Meal.findById(req.params.id,function(err,meal){
+    meal.updateMeal(newName,newProducts,function(err,meals){
+      res.json(meals);
+    })
+  })
+})
 
 router.post('/register', function(req, res, next){
   if(!req.body.username || !req.body.password){

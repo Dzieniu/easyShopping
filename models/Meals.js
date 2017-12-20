@@ -10,6 +10,11 @@ var MealSchema = new mongoose.Schema({
 	return tab[number];}} 
 });
 
+MealSchema.methods.updateMeal = function(name,products,cb){
+	this.name=name;
+	this.products=products;
+	this.save(cb)
+}
 
 
 mongoose.model('Meal', MealSchema);

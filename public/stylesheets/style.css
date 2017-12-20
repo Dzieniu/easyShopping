@@ -13,3 +13,35 @@ input{
 	padding:3px;
 }
 
+.editMealsChoice{
+	padding-bottom:20px;
+	padding-top:0px;
+	text-align:center;
+	font-size:28px;
+}
+.editMealsChoice > div{
+	display:inline-block;
+	padding-left:10px;
+	padding-right:10px;
+	cursor:pointer;
+}
+.editMealsChoice > div:hover{
+color:#60d502;
+}
+#allMeals{
+	pointer-events: none;
+    opacity: 0.4;
+    padding: 30px 0px 30px 0px;
+    margin-top: 30px;
+}
+.showDivv{
+	pointer-events: visible !important;
+    opacity: 1 !important;
+}
+
+.green{
+	color:#60d502 !important;
+}
+button{
+	border-radius:0 !important;
+}
