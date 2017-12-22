@@ -22,7 +22,7 @@
 		
 		<div class="col-md-2 listitem" ng-repeat="meal in meals | filter:searchtext | limitTo:begin | limitTo: 6 " ng-click="addToMealsList(meal)">
 	    	<div class="mealHead" style="background-color: {{meal.color}}"><img src="images/meal.png" /></div>
-	    	<div class="mealName">{{meal.name}}</div>
+	    	<div class="mealName custom-padding">{{meal.name}}</div>
 		</div>
 		<span ng-hide="moveCounter==0 || searchtext" class="glyphicon glyphicon-chevron-left left" ng-click="moveList('left')"></span>
 		<span ng-hide="moveCounter==listEnd || searchtext || meals.length==6" class="glyphicon glyphicon-chevron-right right" ng-click="moveList('right')"></span>
@@ -45,3 +45,4 @@
 		Zacznij układać swój plan
 	</div>
 </div>
+<div ng-click='sendMail()' class="sendEmail">Wyślij email</div>

@@ -36,6 +36,10 @@ input.rightBarinput::-webkit-input-placeholder {
 	width:100%;
 	box-shadow: 2px 12px 7px -7px rgba(161,161,161,0.46);
 	margin-bottom:10px;
+	cursor:pointer;
+}
+.custom-padding{
+	padding:10px;
 }
 
 .mealName div{
@@ -45,9 +49,10 @@ input.rightBarinput::-webkit-input-placeholder {
 .mealName button{
 	    margin-right: 0px;
     margin-top: 10px;
+    margin-bottom:10px;
     padding: 3px 15px;
     border: none;
-    background-color: #ff4d4d;;
+    background-color: #ff4d4d;
     color: white;
 }
 .mealName button:hover{
@@ -210,10 +215,11 @@ input.rightBarinput::-webkit-input-placeholder {
 	margin-top:15px;
 	width:100%;
 }
-#showContent{
+#removeIcon{
 	float: right;
     top: 3px;
     left: 1px;
+    color: #ff4d4d;
 }
 #showContent:hover{
 
@@ -273,12 +279,26 @@ input.rightBarinput::-webkit-input-placeholder {
 }
 
 .arrowDiv{
-	cursor:pointer;
 	display: inline-block;
     float: right;
     width: 30px;
     height: 100%;
     text-align: center;
-    background-color: #bbbbbb;
     padding: 7px 10px 13px 10px;
+}
+
+.sendEmail{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    padding: 10px;
+    color: #252525;
+    font-size: 20px;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    cursor: pointer;
+}
+.sendEmail:hover{
+	background-color:#ffffff;
 }

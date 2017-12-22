@@ -4,14 +4,14 @@ angular.module('easyshopping').controller('newMealCtrl', [
 function($scope,$location,auth,$http){
 
 	var currentEditedID;
-	var currentChoice;
+	$scope.currentChoice;
 	$scope.choiceButton="Dodaj posiłek"
 	$scope.newMealName = "Nazwa posiłku"
 	$scope.ingredients = [{name: "",count: 1,unit: "" }];
 
 	$scope.addMeal = function(){
 		postData = { name:$scope.newMealName,username:auth.currentUser(),products:$scope.ingredients};
-		if(currentChoice=="add"){
+		if($scope.currentChoice=="add"){
 			$http.post("/mealslist", postData).success(function(data2,status) {
 				succesModalonEdit('Dodałeś posiłek','Dodaj kolejny, lub przejdź do układania planu');
 				$scope.ingredients = [{name: "",count: 1,unit: "" }];
@@ -45,7 +45,7 @@ function succesModalonEdit(message1,message2){
    	}
    	var choiceElement=angular.element( document.querySelector( '#addChoices' ) );
    	$scope.editChoice = function($event,choice){
-   		currentChoice=choice;
+   		$scope.currentChoice=choice;
    		choiceElement.removeClass('green');
    		choiceElement=angular.element( $event.currentTarget );
    		choiceElement.addClass('green');

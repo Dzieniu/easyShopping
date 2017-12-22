@@ -27,6 +27,7 @@
     "express-validator": "^4.3.0",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
-    "mongoose": "^4.13.7"
+    "mongoose": "^4.13.7",
+    "nodemailer": "^4.4.1"
   }
 }

@@ -40,16 +40,11 @@
 
 <div id="allMeals">
   <div ng-if="meals.length==0" style="text-align:center;font-size:17px;font-weight:bold"> Nie masz żadnych posiłków.</div>
-  <div class="mealName edit" ng-repeat="meal in meals" ng-init="mealindex=$index">
+  <div   class="mealName edit" ng-repeat="meal in meals" ng-init="mealindex=$index" ng-click="editMeal(meal)">
     <div style="    display: inline-block;
     margin: 7px 10px 7px 10px;">{{meal.name}}</div>
-    <div ng-model="clicked" ng-click="arrowClicked(mealindex); showme=!showme" class="arrowDiv"><span id="showContent" class="glyphicon glyphicon-chevron-down"></span></div>
-    <div ng-show="showme" style="padding:0px 0px 10px 10px;">
-      <div ng-repeat="product in meal.products"  >
-        {{product.name}} - {{product.count}} - {{product.unit}}
-      </div>  
-      <button ng-click="removeMeal(meal)">Usuń posiłek</button>
-      <button ng-click="editMeal(meal)" style="background-color:#30a9ff">Edytuj posiłek</button>
+    <div style="display:inline-block;float:right">
     </div>
+    <div ng-model="clicked" ng-click="removeMeal(meal)" class="arrowDiv"><span id="removeIcon" class="  glyphicon glyphicon-remove"></span></div>
   </div>
 </div>

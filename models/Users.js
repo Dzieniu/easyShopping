@@ -4,6 +4,7 @@ var jwt = require('jsonwebtoken');
 
 var UserSchema = new mongoose.Schema({
   username: {type: String, lowercase: true, unique: true},
+  mail : {type:String, unique:true},
   hash: String,
   salt: String
 });
@@ -30,6 +31,7 @@ UserSchema.methods.generateJWT = function() {
   return jwt.sign({
     _id: this._id,
     username: this.username,
+    mail: this.mail,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');
 };

@@ -6,6 +6,7 @@ var jwt = require('express-jwt');
 var User = mongoose.model('User');
 var Meal = mongoose.model('Meal');
 var mongodb = require('mongodb');
+var mailer = require('../mailing/custom-mailer.js');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
@@ -55,13 +56,14 @@ router.put('/mealslist/:id', function(req,res,next){
 })
 
 router.post('/register', function(req, res, next){
-  if(!req.body.username || !req.body.password){
+  if(!req.body.username || !req.body.password || !req.body.mail){
     return res.status(400).json({message: 'Please fill out all fields'});
   }
 
   var user = new User();
 
   user.username = req.body.username;
+  user.mail=req.body.mail;
 
   user.setPassword(req.body.password)
 
@@ -89,6 +91,9 @@ router.post('/login', function(req, res, next){
 });
 
 
-
-
+router.post('/mail/plan', function(req,res,next){
+  mailer.sendPlan(req.body.email,req.body.HTMLString,function(){
+    res.json("poszlo");
+  })
+})
 module.exports = router;
