@@ -66,9 +66,10 @@ input.rightBarinput::-webkit-input-placeholder {
 	display:inline-block;
 }
 
-.seven-cols{
+.seven-cols{ 
 	background-color:white;
 	margin-top:40px;
+	margin-bottom:40px;
 	box-shadow: 2px 12px 7px -7px rgba(161,161,161,0.46);
 }
 
@@ -287,18 +288,78 @@ input.rightBarinput::-webkit-input-placeholder {
     padding: 7px 10px 13px 10px;
 }
 
-.sendEmail{
-    position: absolute;
+#mealList{
+	animation-duration:0.5s;
+	animation-fill-mode:forwards;
+    position: fixed;
     bottom: 0;
-    left: 50%;
-    padding: 10px;
-    color: #252525;
-    font-size: 20px;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    cursor: pointer;
+    height:100%;
+    color: white;
+    font-size: 15px;
+    width:300px;
+    background-color:#333333;
+    left:-220px;
 }
-.sendEmail:hover{
-	background-color:#ffffff;
+#mealList #showingbutton{
+
+	display:inline-block;
+    position: absolute;
+    right: -41px;
+    top:50%;
+	transform:rotate(270deg) translateY(-50%);
+	float:left;
+	cursor:pointer;
+}
+#mealList .currentList{
+	display:inline-block;
+	padding:20px 40px 0px 20px;
+	height:90%;
+	overflow:auto;
+    margin-right: 40px;
+    width:260px;
+}
+#mealList .buttonContainer{
+	position: absolute;
+    bottom: 0;
+    right: ;
+    margin-right: 40px;
+    border-radius: 0;
+}
+@keyframes slideLeft{
+	from{left:-220px;}
+	to{left:40px;}
+}
+@keyframes slideRight{
+	from{left:40px;}
+	to{left:-220px;}
+}
+
+
+#mealsTab{
+    background-color: #333333;
+	position:fixed;
+	bottom:0;
+	left:80px;
+	width:100%;
+	text-align:center;
+}
+#mealsTab .tabName{
+	color:white;
+	font-size:15px;
+	margin:10px 0px;
+	margin-right: 80px;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }

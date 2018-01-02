@@ -1,48 +1,63 @@
-<div class="rightBar" style="">
+<!-- <div class="rightBar" style="">
 	<span ng-click="showright=!showright" class="glyphicon glyphicon-shopping-cart hideButton"></span>
 	<div id="content" ng-show="showright">
 		<div class="product">
 			<div  ng-repeat="product in list">
 					{{product.name}} / {{product.count}} / {{product.unit}} 
 			</div>
-		</div>
 		<div style="border-top:dotted;border-width:1px;padding-top:5px">
-			Dodaj osobny produkt
+		Dodaj osobny produkt
 			<input class="rightBarinput" ng-model="separateName" placeholder="nazwa produktu"></input>
 			<input class="rightBarinput"  ng-model="separateCount" placeholder="ilość" type="number"></input>
 			<input class="rightBarinput" ng-model="separateUnit" placeholder="jednostka"></input><span class="glyphicon glyphicon-plus" ng-click="addSeparate(separateName,separateCount,separateUnit)"></span>
+		</div>	
 		</div>
+
+	</div>
+</div> -->
+<div style="padding-left:40px;">
+	<div class="row seven-cols">
+		<div class="col-md-12 table-header" >
+			Tygodniowy plan
+		</div>
+		<div class="col-md-1 " ng-repeat="day in days" ng-init="dayIndexR=$index" ng-click="setDay($index)" style="min-height:210px;">
+			<div class="day-header" ng-class="{sel: $index == dayIndex}">
+				{{day.name}}
+			</div>
+			<div class="meal-element" ng-repeat="meal in day.meals track by $index">
+				{{meal.name}}<span ng-click="removeItem(dayIndexR,$index)" class="glyphicon glyphicon-remove" style="color:red; float:right;margin-top:2%;cursor:pointer"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="">
+		<div ng-if="meals.length==0" style="font-size:17px;font-weight:bold"> Nie wprowadziłeś żadnych posiłków. Dodaj je, by móc ułożyć plan!</div>
+		<div ng-hide="meals.length==0" id="searchInput"><input class="removeOutline" ng-model="searchtext" placeholder="Wyszukaj posiłek"></input></div>
+		<div id="listWrapper">
+			<div class="col-md-2 listitem" ng-repeat="meal in meals | filter:searchtext | limitTo:begin | limitTo: 6 " ng-click="addToMealsList(meal)">
+		    	<div class="mealHead" style="background-color: {{meal.color}}"><img src="images/meal.png" /></div>
+		    	<div class="mealName custom-padding">{{meal.name}}</div>
+			</div>
+			<span ng-hide="moveCounter==0 || searchtext" class="glyphicon glyphicon-chevron-left left" ng-click="moveList('left')"></span>
+			<span ng-hide="moveCounter==listEnd || searchtext || meals.length<6" class="glyphicon glyphicon-chevron-right right" ng-click="moveList('right')"></span>
+		</div>
+	</div>
+
+</div>
+
+
+<div id="mealList">
+	<div class="currentList">
+		<div  ng-repeat="product in list">
+			{{product.name}}&nbsp;:&nbsp;{{product.count}}{{product.unit}} 
+		</div>
+
+	</div>
+	<div id="showingbutton">Lista zakupowa</div>
+	<div class="buttonContainer">
+		<button class="btn btn-success" ng-click='sendMail()' ng-disabled="list.length==0" >Wyślij email z listą</button>	
 	</div>
 </div>
 
-<div class="row">
-	<div ng-if="meals.length==0" style="font-size:17px;font-weight:bold"> Nie wprowadziłeś żadnych posiłków. Dodaj je, by móc ułożyć plan!</div>
-	<div ng-hide="meals.length==0" id="searchInput"><input class="removeOutline" ng-model="searchtext" placeholder="Wyszukaj posiłek"></input></div>
-	<div id="listWrapper">
-		
-		<div class="col-md-2 listitem" ng-repeat="meal in meals | filter:searchtext | limitTo:begin | limitTo: 6 " ng-click="addToMealsList(meal)">
-	    	<div class="mealHead" style="background-color: {{meal.color}}"><img src="images/meal.png" /></div>
-	    	<div class="mealName custom-padding">{{meal.name}}</div>
-		</div>
-		<span ng-hide="moveCounter==0 || searchtext" class="glyphicon glyphicon-chevron-left left" ng-click="moveList('left')"></span>
-		<span ng-hide="moveCounter==listEnd || searchtext || meals.length==6" class="glyphicon glyphicon-chevron-right right" ng-click="moveList('right')"></span>
-	</div>
-</div>
 
-<div class="row seven-cols">
-	<div class="col-md-12 table-header" >
-		Tygodniowy plan
-	</div>
-	<div class="col-md-1 " ng-repeat="day in days" ng-init="dayIndexR=$index" ng-click="setDay($index)" >
-		<div class="day-header" ng-class="{sel: $index == dayIndex}">
-			{{day.name}}
-		</div>
-		<div class="meal-element" ng-repeat="meal in day.meals track by $index">
-			{{meal.name}}<span ng-click="removeItem(dayIndexR,$index)" class="glyphicon glyphicon-remove" style="color:red; float:right;margin-top:2%;cursor:pointer"></span>
-		</div>
-	</div>
-	<div ng-if="list.length==0" class="col-md-12 table-footer" style="">
-		Zacznij układać swój plan
-	</div>
-</div>
-<div ng-click='sendMail()' class="sendEmail">Wyślij email</div>
+<!--  class="sendEmail" -->

@@ -3,7 +3,6 @@ angular.module('easyshopping').controller('mealsCtrl', [
 
 function($scope,$location,auth,$http,$q){
 
-	console.log(auth.currentUser());
 	$scope.begin=0;
 	$http.get("/mealslist/"+auth.currentUser()).success(function(data){
 			$scope.meals=data;
@@ -129,6 +128,10 @@ function($scope,$location,auth,$http,$q){
 				sendData.HTMLString += "<div>"+"Na ten dzień nie zaplanowałeś żadnych posiłków"+"</div>"
 			}
 		})
+		sendData.HTMLString += "<br><br><div><b>"+"Lista zakupów:"+"</b></div>"
+		$scope.list.forEach(function(elem){
+			sendData.HTMLString += "<div>"+elem.name+" : "+elem.count+elem.unit+"</div>"
+		})
 		$http.post("/mail/plan", sendData).success(function(data2,status) {
 			swal(
 			  'Wysłano maila z planem',
@@ -137,4 +140,18 @@ function($scope,$location,auth,$http,$q){
 			)
 		});
 	}
+
+	//animations
+	var mealsList = document.getElementById("mealList")
+	var showingbutton = document.getElementById("showingbutton")
+	var isShow=false;
+	showingbutton.addEventListener("click",function(){
+		if(isShow){
+			mealsList.style.animationName="slideRight";
+		}else{
+			mealsList.style.animationName="slideLeft";
+		}
+		isShow=!isShow;
+		
+	})
 }]);
