@@ -45,3 +45,7 @@ color:#60d502;
 button{
 	border-radius:0 !important;
 }
+
+.floatRight{
+	float:none;
+}

@@ -28,6 +28,14 @@ auth.currentUser = function(){
     return payload.username;
   }
 };
+auth.currentUserID = function(){
+  if(auth.isLoggedIn()){
+    var token = auth.getToken();
+    var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+    return payload._id;
+  }
+}
 auth.userEmail = function(){
   if(auth.isLoggedIn()){
     var token = auth.getToken();

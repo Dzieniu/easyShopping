@@ -1,34 +1,52 @@
 angular.module('easyshopping').controller('mealsCtrl', [
-'$scope','$location','auth', '$http','$q',
+'$scope','$location','auth', '$http','$q','dates',
 
-function($scope,$location,auth,$http,$q){
+function($scope,$location,auth,$http,$q,dates){
 
+	
+	$scope.week=dates.getWeekBeginning();
+	$scope.currentDay = dates.getCurrentDay();
 	$scope.begin=0;
 	$http.get("/mealslist/"+auth.currentUser()).success(function(data){
-			$scope.meals=data;
-			$scope.begin=0-$scope.meals.length;
-		});
+		$scope.meals=data;
+		$scope.begin=0-$scope.meals.length;
+	});
 	$scope.dayIndex=0;
 	$scope.picked = [];
 	$scope.list=[]
 	var compareType=1;
 	$scope.days=[{name:"Poniedziałek",meals:[] },
-	{name:"Wtorek",meals:[] },
-	{name:"Środa",meals:[] },
-	{name:"Czwartek",meals:[] },
-	{name:"Piątek",meals:[] },
-	{name:"Sobota",meals:[] },
-	{name:"Niedziela",meals:[] }]
+			{name:"Wtorek",meals:[] },
+			{name:"Środa",meals:[] },
+			{name:"Czwartek",meals:[] },
+			{name:"Piątek",meals:[] },
+			{name:"Sobota",meals:[] },
+			{name:"Niedziela",meals:[] }]
+
+	$http.get("/plan/"+auth.currentUserID()).success(function(data){
+		$scope.days=data.days;
+		updateMealsList($scope.days)
+	});
 	
 
 	$scope.ingredients = [{name: "", count: 0, unit:""}];
 
+	var updateMealsList = function(array){
+		array.forEach(function(elem,i){
+			elem.meals.forEach(function(mealElem,i){
+				var tabs = $scope.listCompare(mealElem);
+				for(i=0;i<=tabs.length-1;i++){
+					$scope.list.push(tabs[i]);
+				}
+			})
+		})
+	}
 	$scope.setDay = function(index){
 		$scope.dayIndex=index;
 	}
 	$scope.addToMealsList = function(meal){
 		$scope.days[$scope.dayIndex].meals.push(meal);
-		tabs = $scope.listCompare(meal);
+		var tabs = $scope.listCompare(meal);
 		for(i=0;i<=tabs.length-1;i++){
 			$scope.list.push(tabs[i]);
 		}
@@ -41,11 +59,7 @@ function($scope,$location,auth,$http,$q){
 	$scope.addIngredient = function(){
 		var newItem = $scope.ingredients.length+1;
    		$scope.ingredients.push({name: "", value: 0, unit:""});
-	}
-	$scope.addToList = function(tab){
-		var temp = tab.products;
-		var dupa=temp.length;
-	}				
+	}		
 
 	$scope.listCompare = function(meal){
 		var arr=[];
@@ -117,6 +131,8 @@ function($scope,$location,auth,$http,$q){
 	$scope.sendMail = function(){
 		var sendData = {
 			HTMLString :"",
+			startDate:$scope.week.start,
+			endDate:$scope.week.end,
 			email: auth.userEmail()
 		}
 		$scope.days.forEach(function(elem){
@@ -132,6 +148,12 @@ function($scope,$location,auth,$http,$q){
 		$scope.list.forEach(function(elem){
 			sendData.HTMLString += "<div>"+elem.name+" : "+elem.count+elem.unit+"</div>"
 		})
+		swal({
+		  title: 'Trwa wysyłanie email\'a',
+		  html:
+		    '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>',
+		  showConfirmButton:false
+		});
 		$http.post("/mail/plan", sendData).success(function(data2,status) {
 			swal(
 			  'Wysłano maila z planem',
@@ -141,17 +163,62 @@ function($scope,$location,auth,$http,$q){
 		});
 	}
 
-	//animations
-	var mealsList = document.getElementById("mealList")
-	var showingbutton = document.getElementById("showingbutton")
-	var isShow=false;
-	showingbutton.addEventListener("click",function(){
-		if(isShow){
-			mealsList.style.animationName="slideRight";
-		}else{
-			mealsList.style.animationName="slideLeft";
+
+	$scope.savePlan = function(){
+		var sendData={
+			startDate:$scope.week.start,
+			endDate:$scope.week.end,
+			days:$scope.days,
+			user:auth.currentUserID()
 		}
-		isShow=!isShow;
-		
-	})
+
+		$http.post("/plan", sendData).success(function(data2,status) {
+			swal(
+			  'Zapisano plan',
+			  '',
+			  'success'
+			)
+		});
+	}
+	$scope.removePlan = function(){
+		var cleanPlan = $scope.days;
+		cleanPlan.forEach(function(elem,i){
+			elem.meals=[];
+		})
+		var sendData={
+			startDate:"",
+			endDate:"",
+			days:$scope.days,
+			user:auth.currentUserID()
+		}
+		$scope.list=[];
+		$http.post("/plan", sendData).success(function(data2,status) {
+			swal(
+			  'Usunięto plan',
+			  '',
+			  'success'
+			)
+			$http.get("/plan/"+auth.currentUserID()).success(function(data){
+				$scope.days=data.days;
+				updateMealsList($scope.days)
+			});
+		});
+	}
+
+	$scope.$on('$viewContentLoaded', function(){
+		//animations
+		console.log("xd")
+		var mealsList = document.getElementById("mealList")
+		var showingbutton = document.getElementById("showingPanel")
+		var isShow=false;
+		showingbutton.addEventListener("click",function(){
+			if(isShow){
+				mealsList.style.animationName="slideRight";
+			}else{
+				mealsList.style.animationName="slideLeft";
+			}
+			isShow=!isShow;
+		})
+		//currentDaysStyle
+  	});
 }]);

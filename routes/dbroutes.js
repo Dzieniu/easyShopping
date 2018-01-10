@@ -5,10 +5,12 @@ var passport = require('passport');
 var jwt = require('express-jwt');
 var User = mongoose.model('User');
 var Meal = mongoose.model('Meal');
+var Plan = mongoose.model('Plan');
 var mongodb = require('mongodb');
 var mailer = require('../mailing/custom-mailer.js');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
+var currentUser;
 
 router.get('/mealslist/:username', function(req,res,next){
   Meal.find({'username': req.params.username}, function(err, meals){
@@ -28,7 +30,7 @@ router.post('/mealslist', function(req,res,next){
   } else {
       meal.save(function(err,meals){
         if(err){return next(err);}
-        res.json(meal);
+        res.json(meals);
       });
   }
 
@@ -88,12 +90,46 @@ router.post('/login', function(req, res, next){
       return res.status(401).json(info);
     }
   })(req, res, next);
+  
 });
 
 
 router.post('/mail/plan', function(req,res,next){
-  mailer.sendPlan(req.body.email,req.body.HTMLString,function(){
+  mailer.sendPlan(req.body.email,req.body.HTMLString,req.body.startDate,req.body.endDate,function(){
     res.json("poszlo");
   })
 })
+
+router.get('/plan/:id',function(req,res,next){
+Plan.findOne({'user':req.params.id}).select('days').populate('days.meals').exec(function(err,plan){
+  if(err){return next(err);}
+  res.json(plan);
+})
+
+})
+
+router.post('/plan',function(req,res,next){
+
+  var insertDays = req.body.days;
+  var sD = req.body.startDate;
+  var eD = req.body.endDate;
+
+  Plan.findOne({'user':req.body.user}).exec(function(err,plan){
+    if(plan){
+      plan.updatePlan(insertDays,sD,eD,function(err,planx){
+        res.json(planx);
+      })
+    }else{
+      var plan = new Plan(req.body);
+      plan.save(function(err,planx){
+        if(err){return next(err);}
+        res.json(planx);
+      });
+    }
+  })
+
+})
+
+
+
 module.exports = router;

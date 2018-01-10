@@ -1,51 +1,57 @@
 <header>
-<div class="container-fluid login">
-  <div class="content" ng-hide="showRegister==true">
-    <div class="headTitle">LOGOWANIE</div>
-    <div ng-click="showRegister=true" style="cursor:pointer">Załóż konto</div>
-    <form ng-submit="logIn()">
-      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-        <input type="text" class="form-control" id="inlineFormInputGroup" ng-model="user.username" placeholder="Nazwa użytkownika">
-      </div>
-      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <div class="input-group-addon"><span class=" glyphicon glyphicon-lock"></span></div>
-        <input type="password" class="form-control" id="inlineFormInputGroup" ng-model="user.password" placeholder="Hasło">
-      </div>
-      <button type="submit" ui-sref-opts="{reload:true}">Zaloguj się</button>
-    </form>
-  </div>
-
-
-  <div class="content" ng-show="showRegister==true">
-    <div class="headTitle">REJESTRACJA</div>
-    <div ng-click="showRegister=false"  style="cursor:pointer">Mam już konto</div>
-    <form ng-submit="register()">
-      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-        <input type="text" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.username" placeholder="Nazwa użytkownika">
-      </div>
-      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <div class="input-group-addon"><span class=" glyphicon glyphicon-lock"></span></div>
-        <input type="password" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.password" placeholder="Hasło">
-      </div>
-
-      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <div class="input-group-addon"><span class=" glyphicon glyphicon-envelope"></span></div>
-        <input type="email" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.mail" placeholder="Email">
-      </div>
-
-      <button type="submit" ui-sref-opts="{reload:true}">Zarejestruj</button>
-    </form>
-  </div>
+<div class="col-md-7 col-sm-12 headWelcome">
+  <div id="title">Easy Shopping</div>
+  <div id="subtitle">Układanie tygodniowego planu żywienia i generowanie listy zakupów nie było takie proste!</div>
 </div>
-  </header>
+<div class="col-md-5 col-sm-12 loginbck" >
+  <div class="login">
+  <div style="margin:0 auto;display:table;margin-bottom:25px">
+  <div class="headTitle" ng-click="showRegister=false" ng-class="{currentHide: showRegister==true}">Logowanie</div>
+  <div class="headTitle" ng-click="showRegister=true" ng-class="{currentHide: showRegister==false}">Rejestracja</div>
+  </div>
+  <div class="content" ng-hide="showRegister==true" >
+      <form ng-submit="logIn()">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+          <input type="text" class="form-control" id="inlineFormInputGroup" ng-model="user.username" placeholder="Nazwa użytkownika">
+        </div>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><span class=" glyphicon glyphicon-lock"></span></div>
+          <input type="password" class="form-control" id="inlineFormInputGroup" ng-model="user.password" placeholder="Hasło">
+        </div>
+        <button type="submit" ui-sref-opts="{reload:true}">Zaloguj się</button>
+      </form>
+    </div>
+
+    <div class="content" ng-show="showRegister==true">
+      <form ng-submit="register()">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+          <input type="text" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.username" placeholder="Nazwa użytkownika">
+        </div>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><span class=" glyphicon glyphicon-lock"></span></div>
+          <input type="password" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.password" placeholder="Hasło">
+        </div>
+
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><span class=" glyphicon glyphicon-envelope"></span></div>
+          <input type="email" class="form-control" id="inlineFormInputGroup" ng-model="userRegister.mail" placeholder="Email">
+        </div>
+
+        <button type="submit" ui-sref-opts="{reload:true}">Zarejestruj</button>
+      </form>
+    </div>
+</div>
+</div>
+  
+</header>
 
 <main>
 <section>
 <div class="container-fluid description">
-  <div class="headTitle" style="color:black;margin-bottom:50px">PO CO/DLACZEGO/DLA KOGO</div>
-  <div class="row">
+  <div class="headTitlee" style="color:black;margin-bottom:100px">PO CO / DLACZEGO / DLA KOGO</div>
+  <div class="row" >
     <div class="col-md-3">
     <img src="/images/make.png"/>
       <div class="imgtitle">Robisz zakupy raz w tygodniu...</div>
@@ -68,7 +74,7 @@
 
 <section>
 <div class="container-fluid howitworks">
-  <div class="headTitle" style="color:white;margin-bottom:50px">JAK DZIAŁA APLIKACJA?</div>
+  <div class="headTitlee" style="color:white;margin-bottom:50px">JAK DZIAŁA APLIKACJA?</div>
       <div class="col-md-12" style="margin-bottom:50px">
         <div ng-click="chooseStep(0)" ng-class="{startRotate:animationIndex==0, finish:animationIndex!=0}" class="circleborder">1.</div>
         <div ng-click="chooseStep(1)" ng-class="{startRotate:animationIndex==1, finish:animationIndex!=1}" class="circleborder">2.</div>

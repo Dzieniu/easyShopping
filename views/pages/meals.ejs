@@ -1,27 +1,12 @@
-<!-- <div class="rightBar" style="">
-	<span ng-click="showright=!showright" class="glyphicon glyphicon-shopping-cart hideButton"></span>
-	<div id="content" ng-show="showright">
-		<div class="product">
-			<div  ng-repeat="product in list">
-					{{product.name}} / {{product.count}} / {{product.unit}} 
-			</div>
-		<div style="border-top:dotted;border-width:1px;padding-top:5px">
-		Dodaj osobny produkt
-			<input class="rightBarinput" ng-model="separateName" placeholder="nazwa produktu"></input>
-			<input class="rightBarinput"  ng-model="separateCount" placeholder="ilość" type="number"></input>
-			<input class="rightBarinput" ng-model="separateUnit" placeholder="jednostka"></input><span class="glyphicon glyphicon-plus" ng-click="addSeparate(separateName,separateCount,separateUnit)"></span>
-		</div>	
-		</div>
-
-	</div>
-</div> -->
 <div style="padding-left:40px;">
 	<div class="row seven-cols">
 		<div class="col-md-12 table-header" >
-			Tygodniowy plan
+			Tygodniowy plan <small style="margin-left:20px">{{week.start}}&nbsp;-&nbsp;{{week.end}}</small>
+			<button class="btn btn-danger floatRight" ng-click="removePlan()">Usuń plan</button>	
+			<button class="btn btn-info floatRight" ng-click="savePlan()">Zapisz plan</button>	
 		</div>
-		<div class="col-md-1 " ng-repeat="day in days" ng-init="dayIndexR=$index" ng-click="setDay($index)" style="min-height:210px;">
-			<div class="day-header" ng-class="{sel: $index == dayIndex}">
+		<div class="col-md-1" ng-repeat="day in days" ng-init="dayIndexR=$index" ng-click="setDay($index)" style="min-height:210px;">
+			<div class="dayheader" ng-class="{sel: $index == dayIndex,curDay: $index+1 == currentDay}">
 				{{day.name}}
 			</div>
 			<div class="meal-element" ng-repeat="meal in day.meals track by $index">
@@ -44,20 +29,17 @@
 	</div>
 
 </div>
-
-
 <div id="mealList">
 	<div class="currentList">
 		<div  ng-repeat="product in list">
 			{{product.name}}&nbsp;:&nbsp;{{product.count}}{{product.unit}} 
 		</div>
-
+	</div>
+	<div id="showingPanel">
+		
 	</div>
 	<div id="showingbutton">Lista zakupowa</div>
 	<div class="buttonContainer">
 		<button class="btn btn-success" ng-click='sendMail()' ng-disabled="list.length==0" >Wyślij email z listą</button>	
 	</div>
 </div>
-
-
-<!--  class="sendEmail" -->

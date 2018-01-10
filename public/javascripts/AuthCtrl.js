@@ -3,6 +3,7 @@ angular.module('easyshopping').controller('AuthCtrl', [
 '$state',
 'auth',
 function($scope, $state, auth){
+    $scope.showRegister = false;
     $scope.user = {};
     $scope.userRegister = {};
     $scope.images=["/images/howitworks/addmeal.png","/images/howitworks/chooseday.png","/images/howitworks/choosemeal.png","/images/howitworks/plane.png","/images/howitworks/list.png"];

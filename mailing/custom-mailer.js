@@ -9,11 +9,11 @@ var transporter = nodemailer.createTransport({
 });
 
 module.exports = {
-sendPlan: function(email,text,callback){
+sendPlan: function(email,text,sd,ed,callback){
 	var mailOptions = {
 	  from: 'Easy Shopping <dzieniu@gmail.com>',
 	  to: email,
-	  subject: 'Tygodniowy plan zywienia: '+'20.12-'+'27.12.2017',
+	  subject: sd+'-'+ed+' - Plan zywienia + lista zakupów ',
 	  html: text
 	};
 

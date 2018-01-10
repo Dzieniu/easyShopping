@@ -74,6 +74,9 @@ input.rightBarinput::-webkit-input-placeholder {
 }
 
 @media (min-width: 768px){
+.floatRight{
+	float:right;
+}
   .seven-cols .col-md-1,
   .seven-cols .col-sm-1,
   .seven-cols .col-lg-1  {
@@ -85,6 +88,9 @@ input.rightBarinput::-webkit-input-placeholder {
 }
 
 @media (min-width: 992px) {
+.floatRight{
+	float:right;
+}
   .seven-cols .col-md-1,
   .seven-cols .col-sm-1,
   .seven-cols .col-lg-1 {
@@ -107,13 +113,13 @@ input.rightBarinput::-webkit-input-placeholder {
 	padding:15px;
 }
 
-.day-header{
+.dayheader{
 
 	cursor:pointer;
 	word-wrap: break-word;
 	text-align:center;
 	padding:10px;
-	font-size:17px;
+	font-size:16px;
 	letter-spacing: 1px;
 	border-bottom:solid;
 	border-width:1px;
@@ -301,14 +307,22 @@ input.rightBarinput::-webkit-input-placeholder {
     left:-220px;
 }
 #mealList #showingbutton{
-
 	display:inline-block;
     position: absolute;
     right: -41px;
     top:50%;
 	transform:rotate(270deg) translateY(-50%);
 	float:left;
-	cursor:pointer;
+}
+#mealList #showingPanel{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 260px;
+    cursor:pointer;
+    z-index:99999;
+    border-left: 1px solid #5cb85c;
 }
 #mealList .currentList{
 	display:inline-block;
@@ -350,6 +364,9 @@ input.rightBarinput::-webkit-input-placeholder {
 	margin-right: 80px;
 }
 
+.curDay{
+	border-bottom:3px solid #5cb85c;
+}
 
 ::-webkit-scrollbar {
     width: 10px;

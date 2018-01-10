@@ -1,23 +1,60 @@
-.login{
-	color:white;
-	background-image: url('/images/background.jpg');
+.container-fluid{
+	font-family: 'Raleway', sans-serif;
+}
+header{
+	height:100vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/images/background.jpg) no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
-	height:500px;
-	padding-top:55px;
+	font-family: 'Raleway', sans-serif;
+}
+.headWelcome{
+	color:white;
+	text-align:center;
+	top:50%;
+	transform:translateY(-50%);
+}
+.headWelcome #title{
+	font-size:60px;
+	font-weight:400;
+}
+.headWelcome #subtitle{
+	font-size:32px;
+	font-weight:300;
+	padding:0 40px;
+}
+.login{
+
+	position:relative;
+	top:50%;
+	transform:translateY(-50%);
+}
+.loginbck{
+	    background-color: rgba(0,0,0,0.4);
+    height: 100%;
 }
 
 .content{
+	width:90%;
 	margin:auto;
-	margin-top:100px;
 	text-align:center;
 	display:block;
 }
+.currentHide{
+	opacity:0.4;
+}
 .headTitle{
+	display:inline-block;
+	margin:0px 10px;
 	color:white;
-	font-size:30px;
-	font-weight: bold;
+	font-size:42px;
+	font-weight: 300;
 	letter-spacing: -0.5px;
+	cursor:pointer;
+}
+.headTitlee{
+		font-size:42px;
+	font-weight: 500;
 }
 .content img{
 	width:20%;
@@ -49,7 +86,6 @@
 
 .content form{
 	color:black;
-	margin-top:40px;
 }
 .content input{
 	color:white;
@@ -75,14 +111,15 @@
 	width:100%;
 	margin:auto;
 	color:white;
-	border:solid;
-	border-width:2px;
-	border-color:#33cc33;
+	border:none;
 	background-color:transparent;
-	font-size:15px;
+	font-size:19px;
 	margin-top:10px;
+	transition:0.2s;
 }
-
+.input-group-addon{
+	    padding: 5px 12px !important;
+}
 .content button:hover{
 	background-color:#33cc33;
 }
@@ -111,14 +148,13 @@
 .description img{
 	width:200px;
 	height:200px;
-	opacity: 0.2;
 }
 .description img:hover{
 	opacity:1;
 }
 
 .imgtitle{
-	font-weight:bold;
+	font-weight:700;
 	margin-top:20px;
 	font-size:17px;
 }
@@ -133,14 +169,14 @@
 	text-align:center;
 }
 .howitworks h4{
-	font-weight: bold;
+	font-weight: 500;
 	color:white;
 	padding-bottom:20px;
 }
 .circleborder{
 	cursor:pointer;
 	color:white;
-	font-weight: bold;
+	font-weight: 400;
 	font-size:20px;
 	padding-top: 22px;
 padding-left: 5px;
@@ -166,21 +202,31 @@ padding-left: 5px;
 	to{transform: scale(1.5);}
 }
 
-@media (min-width: 768px){
-  .content  {
-    width: 90%;
-    *width: 90%;
-  }
-}
-@media (min-width: 992px){
-  .content  {
-    width: 40%;
-    *width: 40%;
-  }
-}
 .footer{
 	background-color:white;
 	text-align:center;
 	font-size:13px;
 	padding:20px;
+}
+
+
+@media screen and (max-width:768px){
+	header{
+		height:auto;
+		min-height:600px;
+	}
+	.loginbck{
+		height:300px;
+	}
+	.headWelcome{
+	    padding: 40px 0px;
+		top:auto;
+		transform:none;
+	}
+}
+@media screen and (max-width:1024px){
+	.headTitle{
+		display:block;
+		margin:0 auto;
+	}
 }
