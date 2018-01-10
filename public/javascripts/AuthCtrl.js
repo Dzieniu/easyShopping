@@ -2,7 +2,10 @@ angular.module('easyshopping').controller('AuthCtrl', [
 '$scope',
 '$state',
 'auth',
-function($scope, $state, auth){
+'$interval',
+function($scope, $state, auth,$interval){
+
+
     $scope.showRegister = false;
     $scope.user = {};
     $scope.userRegister = {};
@@ -33,6 +36,7 @@ function($scope, $state, auth){
       $scope.error = error;
     }).then(function(){
       $state.go('main.meals');
+      $interval.cancel(run);
     });
   };
 
@@ -42,14 +46,27 @@ function($scope, $state, auth){
       $scope.error = error;
     }).then(function(){
       $state.go('main.meals');
+      $interval.cancel(run);
     });
 
   };
-
+  var currentIteration=1
   $scope.chooseStep = function(index){
     $scope.currentImage = $scope.images[index];
     $scope.currentText = $scope.texts[index];
     $scope.animationIndex=index;
+    currentIteration=index;
   }
+
+  var run = $interval(function(){
+    console.log("xd")
+    $scope.chooseStep(currentIteration)
+    currentIteration++;
+    if(currentIteration==$scope.images.length){
+      currentIteration=0;
+    }
+  },4000)
+
+
   
 }])
