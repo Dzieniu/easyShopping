@@ -3,7 +3,9 @@ angular.module('easyshopping').controller('AuthCtrl', [
 '$state',
 'auth',
 '$interval',
-function($scope, $state, auth,$interval){
+'$location',
+'$anchorScroll',
+function($scope, $state, auth,$interval,$location,$anchorScroll,){
 
 
     $scope.showRegister = false;
@@ -50,6 +52,35 @@ function($scope, $state, auth,$interval){
     });
 
   };
+
+  //historyjka
+  $scope.storySize=7;
+  $scope.currentStory=0;
+  $scope.storyStructure = [
+  {img:"/images/make.png",text:"Robisz zakupy raz w tygodniu?"},
+  {img:"/images/think.png",text:"Co tydzień musisz planować co zjeść i robić listę zakupów?"},
+  {img:"/images/angry.png",text:"Nie lubisz tego robić?"},
+  {img:"/images/end.png",text:"Koniec z tym! Dzięki tej aplikacji ułatwisz sobie ten proces!"},
+  {img:"/images/end.png",text:"Nie wszystkie odpowiedzi były twierdzące? Nic straconego! Zobacz, do czego służy EasyShopping!"}
+  ]
+  $scope.yesAnswer = function(){
+    $scope.currentStory++
+    if($scope.currentStory==3){
+      $scope.storySize=12
+      setTimeout(function(){
+        $scope.gotoDiv("#howitworks")
+      },1500);
+    }
+  }
+  $scope.noAnswer = function(){
+    $scope.currentStory=4
+    $scope.storySize=12
+    setTimeout(function(){
+      $scope.gotoDiv("#howitworks")
+    },1500);
+  }
+
+
   var currentIteration=1
   $scope.chooseStep = function(index){
     $scope.currentImage = $scope.images[index];
@@ -57,7 +88,6 @@ function($scope, $state, auth,$interval){
     $scope.animationIndex=index;
     currentIteration=index;
   }
-
   var run = $interval(function(){
     console.log("xd")
     $scope.chooseStep(currentIteration)
@@ -68,5 +98,19 @@ function($scope, $state, auth,$interval){
   },4000)
 
 
-  
+  $scope.gotoDiv = function(x) {
+    var divPosition = angular.element(document.querySelector(x)).prop('offsetTop');
+    var currentPosition = self.pageYOffset;
+    var n = currentPosition;
+    currentIteration=0;
+    (function smoothScroll(){
+      if(n<=divPosition){
+        window.scrollTo(0,n+=4);
+        setTimeout(function(){
+          smoothScroll();
+        },0.2)
+      }
+    })()
+  };
+
 }])

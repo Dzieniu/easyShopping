@@ -50,13 +50,19 @@
 <main>
 <section>
 <div class="container-fluid description">
-  <div class="headTitlee" style="color:black;margin-bottom:100px">PO CO / DLACZEGO / DLA KOGO</div>
+  <div class="headTitlee" style="color:black;margin-bottom:60px">PO CO / DLACZEGO / DLA KOGO</div>
   <div class="row" >
-    <div class="col-md-3">
-    <img src="/images/make.png"/>
-      <div class="imgtitle">Robisz zakupy raz w tygodniu...</div>
+    <div class="col-md-{{storySize}}">
+    <img ng-src="{{storyStructure[currentStory].img}}"/>
+      <div class="imgtitle">{{storyStructure[currentStory].text}}</div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-5" ng-hide="currentStory>=3">
+      <div class="answerPanel" >
+        <button ng-click="yesAnswer()">TAK</button>
+        <button ng-click="noAnswer()">NIE</button>    
+      </div>
+    </div>
+<!--     <div class="col-md-3">
     <img src="/images/think.png"/>
       <div class="imgtitle">...co tydzień musisz planować co zjeść i robić listę zakupów...</div>
     </div>
@@ -67,13 +73,13 @@
     <div class="col-md-3">
     <img src="/images/end.png"/>
       <div class="imgtitle">Koniec z tym!<br> Dzięki tej aplikacji ułatwisz sobie ten proces!</div>
-    </div>
+    </div> -->
   </div>
 </div>
 </section>
 
 <section>
-<div class="container-fluid howitworks">
+<div class="container-fluid " id="howitworks">
   <div class="headTitlee" style="color:white;margin-bottom:50px">JAK DZIAŁA APLIKACJA?</div>
       <div class="col-md-12" style="margin-bottom:50px">
         <div ng-click="chooseStep(0)" ng-class="{startRotate:animationIndex==0, finish:animationIndex!=0}" class="circleborder">1.</div>
