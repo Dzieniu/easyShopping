@@ -1,9 +1,9 @@
 angular.module('easyshopping').controller('mealsCtrl', [
-'$scope','$location','auth', '$http','$q','dates',
+'$scope','$location','auth', '$http','$q','dates','$document',
 
-function($scope,$location,auth,$http,$q,dates){
+function($scope,$location,auth,$http,$q,dates,$document){
 
-	
+	$scope.meallistopen=false;
 	$scope.week=dates.getWeekBeginning();
 	$scope.currentDay = dates.getCurrentDay();
 	$scope.begin=0;
@@ -193,16 +193,26 @@ function($scope,$location,auth,$http,$q,dates){
 		}
 		$scope.list=[];
 		$http.post("/plan", sendData).success(function(data2,status) {
-			swal(
-			  'Usunięto plan',
-			  '',
-			  'success'
-			)
 			$http.get("/plan/"+auth.currentUserID()).success(function(data){
 				$scope.days=data.days;
+				swal(
+					'Usunięto plan',
+					'',
+					'success'
+				  )
 				updateMealsList($scope.days)
 			});
 		});
+	}
+
+	$scope.openMealList = function(){
+		$scope.meallistopen=true;
+	}
+	$scope.closeMealList = function(){
+		$scope.meallistopen=false;
+	}
+	$scope.consolelog=function(value){
+		console.log(value)
 	}
 
 	$scope.$on('$viewContentLoaded', function(){
@@ -220,5 +230,7 @@ function($scope,$location,auth,$http,$q,dates){
 			isShow=!isShow;
 		})
 		//currentDaysStyle
-  	});
+	  });
+	  
+	
 }]);

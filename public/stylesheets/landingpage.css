@@ -251,4 +251,12 @@ padding-left: 5px;
 		display:block;
 		margin:0 auto;
 	}
+	#searchMeals #mealsList{
+		width: 90% !important;
+		height: 60% !important;
+	}
+}
+
+.blockscroll{
+	overflow:hidden
 }
