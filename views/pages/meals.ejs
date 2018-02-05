@@ -1,6 +1,4 @@
 <div style="padding-left:40px;">
-
-	
 	<div class="row seven-cols">
 		<div class="col-md-12 table-header" >
 			Tygodniowy plan <small style="margin-left:20px">{{week.start}}&nbsp;-&nbsp;{{week.end}}</small>
@@ -8,7 +6,7 @@
 			<button class="btn btn-info floatRight" ng-click="savePlan()">Zapisz plan</button>	
 		</div>
 		<div class="col-md-1" ng-repeat="day in days" ng-init="dayIndexR=$index" ng-click="setDay($index)" style="min-height:210px;">
-			<div class="dayheader" ng-class="{sel: $index == dayIndex,curDay: $index+1 == currentDay}">
+			<div class="dayheader" ng-class="{curDay: $index+1 == currentDay}">
 				{{day.name}}
 			</div>
 			<div class="meal-element" ng-repeat="meal in day.meals track by $index">

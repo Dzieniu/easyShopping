@@ -3,6 +3,7 @@ angular.module('easyshopping').controller('newMealCtrl', [
 
 function($scope,$location,auth,$http){
 
+	$scope.editmeal=false;
 	var currentEditedID;
 	$scope.currentChoice;
 	$scope.choiceButton="Dodaj posiłek"
@@ -20,6 +21,7 @@ function($scope,$location,auth,$http){
 		}else{
 			$http.put("/mealslist/"+currentEditedID, postData).success(function() {
 				succesModalonEdit('Posiłek został zedytowany','');
+				$scope.ingredients = [];
 				$scope.refresh();
 			});
 		}
@@ -39,9 +41,8 @@ function succesModalonEdit(message1,message2){
 		var newItem = $scope.ingredients.length+1;
    		$scope.ingredients.push({name: "", count: 1, unit:""});
    	}
-   	$scope.removeIngredient = function(){
-		var lastItem = $scope.ingredients.length;
-   		$scope.ingredients.splice(-1,1);
+   	$scope.removeIngredient = function(index){
+   		$scope.ingredients.splice(index,1);
    	}
    	var choiceElement=angular.element( document.querySelector( '#addChoices' ) );
    	$scope.editChoice = function($event,choice){
@@ -51,9 +52,9 @@ function succesModalonEdit(message1,message2){
    		choiceElement.addClass('green');
    		var myEl = angular.element( document.querySelector( '#allMeals' ) );
 
+		$scope.editmeal = !$scope.editmeal
    		if(choice=='add'){
    			$scope.choiceButton="Dodaj posiłek"
-   			myEl.removeClass('showDivv');
    			$scope.newMealName = "Nazwa posiłku"
 			$scope.ingredients = [{name: "",count: 1,unit: "" }];
    		}
@@ -61,7 +62,6 @@ function succesModalonEdit(message1,message2){
    			$scope.choiceButton="Edytuj posiłek"
    			$scope.newMealName = 'Wybierz posiłek';
 			$scope.ingredients = [];
-   			myEl.addClass('showDivv');
    		}
    	}
 
@@ -102,7 +102,6 @@ function succesModalonEdit(message1,message2){
 		$scope.ingredients = mealObj.products;
 	}	
 	$scope.removeMeal = function(mealobj){
-
 		swal({
 			title: 'Na pewno chcesz usunąć posiłek ' + '<i>' + mealobj.name +'?',
 			type: 'warning',

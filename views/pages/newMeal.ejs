@@ -1,50 +1,47 @@
 <div class="editMealsChoice">
-<div ng-click="editChoice($event,'add')" id="addChoices" class="green">Dodaj nowy posiłek</div>
-<div ng-click="editChoice($event,'edit')" id="editChoices">Edytuj istniejący posiłek</div>
+  <div ng-click="editChoice($event,'add')" id="addChoices" class="green">Dodaj nowy posiłek</div>
+  <div ng-click="editChoice($event,'edit')" id="editChoices">Edytuj istniejący</div>
 </div>
-<div class="row" id="formcontent">
-<form>
-   <input ng-model="newMealName" id="mealNameInput" value="Nazwa posiłku"></input>
-  <div id="ingredientsTitle"><div>Nazwa składniku</div><div>Typ</div><div>Ilość</div></div>
-  <div id="ingredientsList">
-<!-- lista -->
-  <div ng-repeat="ingredient in ingredients">
-    <div class="ingredientsRow">
-      <div class="col-md-4" id="ingredientName">
-        <input ng-model="ingredients[$index].name"></input>
-      </div>
-      <div class="col-md-4" id="ingreditenUnit">
-        <select ng-model="ingredients[$index].unit">
-          <option value="sztuka">sztuka</option>
-          <option value="g">g</option>
-          <option value="dag">dkg</option>
-          <option value="kg">kg</option>
-          <option value="ml">ml</option>
-          <option value="l">l</option>
-        </select>
-      </div>
-      <div class="col-md-4" id="ingredientNumber">
-        <input  ng-model="ingredients[$index].count" type="number" min="1">
+<div style="width:80%;margin:0 auto;margin-top:40px;">
+    
+    <div id="allMeals" ng-show="editmeal">
+      <div ng-if="meals.length==0" style="text-align:center;font-size:17px;font-weight:bold"> Nie masz żadnych posiłków.</div>
+      <div   class="mealName edit" ng-repeat="meal in meals" ng-init="mealindex=$index" ng-click="editMeal(meal)">
+        <div style="    display: inline-block;
+        margin: 7px 10px 7px 10px;">{{meal.name}}</div>
+        <div style="display:inline-block;float:right">
+        </div>
+        <div ng-model="clicked" ng-click="removeMeal(meal)" class="arrowDiv"><span id="removeIcon" class="  glyphicon glyphicon-remove"></span></div>
       </div>
     </div>
-<!--     lista -->
-  </div>
-  </div>
-
-  <i ng-click="removeIngredient()" class="fa fa-minus-circle" aria-hidden="true" style=";padding-left:5px; padding-top:5px;float:right; color:red"></i>
-  <i ng-click="addIngredient()"  class="fa fa-plus-circle" aria-hidden="true" style="padding-top:5px;float:right"></i>
-</form>
-  <button  class="btn btn-success" ng-click="addMeal()" >{{choiceButton}}</button>
-</div>
-
-
-<div id="allMeals">
-  <div ng-if="meals.length==0" style="text-align:center;font-size:17px;font-weight:bold"> Nie masz żadnych posiłków.</div>
-  <div   class="mealName edit" ng-repeat="meal in meals" ng-init="mealindex=$index" ng-click="editMeal(meal)">
-    <div style="    display: inline-block;
-    margin: 7px 10px 7px 10px;">{{meal.name}}</div>
-    <div style="display:inline-block;float:right">
+    
+    <input ng-model="newMealName" id="mealNameInput" value="Nazwa posiłku"></input>
+    <div> 
+      <div class="col-md-4 col-lg-3" id="formcontent" ng-repeat="ingredient in ingredients">
+          <i ng-click="removeIngredient($index)" class="fa fa-minus" style="width:20px;height:20px;position:absolute;top:0;right:0;color:red"></i>
+          <label>Składnik {{$index+1}}</label>
+          <input ng-model="ingredients[$index].name" placeholder="Nazwa składnika"></input>
+          <select ng-model="ingredients[$index].unit" style="display: inline-block;
+          width: 70%;">
+            <option value="" disabled selected>Jednostka</option>
+            <option value="sztuka">sztuka</option>
+            <option value="g">g</option>
+            <option value="dag">dkg</option>
+            <option value="kg">kg</option>
+            <option value="ml">ml</option>
+            <option value="l">l</option>
+          </select>
+          <input ng-model="ingredients[$index].count" onfocus="this.type='number';" min="1" placeholder="Ilość" style="width: 28%;
+          display: inline-block; text-align:center"></input>
+      </div>
+      <div ng-click="addIngredient()" class="col-md-4 col-lg-3 hoveropacity" style="background-color:rgba(0,0,0,0.3);height:86px;cursor:pointer">
+          <i  class="fa fa-plus-circle" aria-hidden="true" style="font-size:50px; position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)"></i>
+      </div>
     </div>
-    <div ng-model="clicked" ng-click="removeMeal(meal)" class="arrowDiv"><span id="removeIcon" class="  glyphicon glyphicon-remove"></span></div>
-  </div>
+    <div ng-click="addMeal()" class="col-md-12 hoveropacity" style="height: 60px !important;margin-top:15px;background-color:rgb(57, 208, 69);height:86px;cursor:pointer">
+        <div style="font-size:30px; position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)">
+            {{choiceButton}}
+        </div>
+    </div>    
+    
 </div>
