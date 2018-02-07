@@ -1,9 +1,17 @@
-<div class="editMealsChoice">
-  <div ng-click="editChoice($event,'add')" id="addChoices" class="green">Dodaj nowy posiłek</div>
-  <div ng-click="editChoice($event,'edit')" id="editChoices">Edytuj istniejący</div>
+<div style="width:90%;margin:0 auto">
+
+<div style="display:flex;margin-bottom:40px;">
+    <div ng-click="editChoice($event,'add')" id="addChoices" class="col-xs-12 col-md-6 hoveropacity blackx green" style="height: 60px !important;height:86px;cursor:pointer">
+        <div style="font-size:30px;width:100%;text-align:center; position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)">
+            Dodaj nowy posiłek
+        </div>
+    </div> 
+    <div ng-click="editChoice($event,'edit')" id="editChoices" class="col-xs-12 col-md-6 hoveropacity blackx" style="height: 60px !important;;height:86px;cursor:pointer">
+        <div style="font-size:30px;width:100%;text-align:center; position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)">
+            Edytuj posiłek
+        </div>
+    </div> 
 </div>
-<div style="width:80%;margin:0 auto;margin-top:40px;">
-    
     <div id="allMeals" ng-show="editmeal">
       <div ng-if="meals.length==0" style="text-align:center;font-size:17px;font-weight:bold"> Nie masz żadnych posiłków.</div>
       <div   class="mealName edit" ng-repeat="meal in meals" ng-init="mealindex=$index" ng-click="editMeal(meal)">
@@ -15,9 +23,9 @@
       </div>
     </div>
     
-    <input ng-model="newMealName" id="mealNameInput" value="Nazwa posiłku"></input>
+    <input ng-model="newMealName" id="mealNameInput" placeholder="Nazwa posiłku" style="margin-bottom:30px;"></input>
     <div> 
-      <div class="col-md-4 col-lg-3" id="formcontent" ng-repeat="ingredient in ingredients">
+      <div class="col-xs-6 col-md-4 col-lg-3" id="formcontent" ng-repeat="ingredient in ingredients">
           <i ng-click="removeIngredient($index)" class="fa fa-minus" style="width:20px;height:20px;position:absolute;top:0;right:0;color:red"></i>
           <label>Składnik {{$index+1}}</label>
           <input ng-model="ingredients[$index].name" placeholder="Nazwa składnika"></input>
@@ -34,12 +42,12 @@
           <input ng-model="ingredients[$index].count" onfocus="this.type='number';" min="1" placeholder="Ilość" style="width: 28%;
           display: inline-block; text-align:center"></input>
       </div>
-      <div ng-click="addIngredient()" class="col-md-4 col-lg-3 hoveropacity" style="background-color:rgba(0,0,0,0.3);height:86px;cursor:pointer">
+      <div ng-click="addIngredient()" class="col-xs-6 col-md-4 col-lg-3 hoveropacity" style="background-color:rgba(0,0,0,0.3);height:86px;cursor:pointer">
           <i  class="fa fa-plus-circle" aria-hidden="true" style="font-size:50px; position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)"></i>
       </div>
     </div>
-    <div ng-click="addMeal()" class="col-md-12 hoveropacity" style="height: 60px !important;margin-top:15px;background-color:rgb(57, 208, 69);height:86px;cursor:pointer">
-        <div style="font-size:30px; position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)">
+    <div ng-click="addMeal()" class="col-md-offset-2 col-xs-12 col-md-8 hoveropacity" style="height: 60px !important;margin-top:40px;color:#98cc02;height:86px;cursor:pointer">
+        <div style="font-size:30px;width:100%;text-align:center; position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)">
             {{choiceButton}}
         </div>
     </div>    

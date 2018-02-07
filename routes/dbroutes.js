@@ -20,14 +20,22 @@ router.get('/mealslist/:username', function(req,res,next){
 });
 
 router.post('/mealslist', function(req,res,next){
-  var meal = new Meal(req.body);
+  var products = req.body.products;
+  var name = req.body.name
+  var errors = [];
+  if(name==''){errors.push(`Wprowadź nazwę posiłku`)}
+  if(products.length==0){errors.push(`Wprowadz składniki`)}
+  products.forEach((element,i) => {
+    console.log(`${element.name} + ${element.unit}`)
+    if(element.name=='' || element.unit ==''){
+      errors.push(`Puste pola w składniku nr ${i+1}`)
+    }
+  });
 
-  req.checkBody("name", "Wprowadz nazwę posiłku").exists().notEmpty();
-  var errors = req.validationErrors();
-
-  if (errors) {
-      res.status(403).send('Wprowadz nazwę posiłku');
+  if (errors.length!=0) {
+      res.status(403).send(errors);
   } else {
+      var meal = new Meal(req.body);
       meal.save(function(err,meals){
         if(err){return next(err);}
         res.json(meals);
@@ -48,14 +56,28 @@ router.delete('/mealslist/:id', function(req,res,next){
 });
 
 router.put('/mealslist/:id', function(req,res,next){
-  var newName=req.body.name;
-  var newProducts=req.body.products;
-  Meal.findById(req.params.id,function(err,meal){
-    meal.updateMeal(newName,newProducts,function(err,meals){
-      res.json(meals);
+  var products = req.body.products;
+  var name = req.body.name
+  var errors = [];
+  if(name==''){errors.push(`Wprowadź nazwę posiłku`)}
+  if(products.length==0){errors.push(`Wprowadz składniki`)}
+  products.forEach((element,i) => {
+  if(element.name=='' || element.unit ==''){
+      errors.push(`Puste pola w składniku nr ${i+1}`)
+    }
+  });
+
+  if (errors.length!=0) {
+      res.status(403).send(errors);
+  }else{
+    Meal.findById(req.params.id,function(err,meal){
+      meal.updateMeal(name,products,function(err,meals){
+        res.json(meals);
+      })
     })
-  })
+  }
 })
+
 
 router.post('/register', function(req, res, next){
   if(!req.body.username || !req.body.password || !req.body.mail){

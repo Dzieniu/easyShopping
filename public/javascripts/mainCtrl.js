@@ -9,4 +9,5 @@ function($scope,$location,auth){
 	
 	$scope.currentUser=auth.currentUser();
 	$scope.logout = auth.logOut;
+
 }]);

@@ -1,5 +1,5 @@
 <div style="padding-left:40px;">
-	<div class="row seven-cols">
+	<div class="row seven-cols" style="margin-top:10px !important">
 		<div class="col-md-12 table-header" >
 			Tygodniowy plan <small style="margin-left:20px">{{week.start}}&nbsp;-&nbsp;{{week.end}}</small>
 			<button class="btn btn-danger floatRight" ng-click="removePlan()">Usuń plan</button>	
@@ -12,7 +12,7 @@
 			<div class="meal-element" ng-repeat="meal in day.meals track by $index">
 				{{meal.name}}<span ng-click="removeItem(dayIndexR,$index)" class="glyphicon glyphicon-remove" style="color:red; float:right;margin-top:2%;cursor:pointer"></span>
 			</div>
-			<div class="meal-element" style="font-weight:bold;cursor:pointer;color:rgb(57, 208, 97);"ng-click="openMealList()">Dodaj posiłek</div>
+			<div class="meal-element" style="font-weight:bold;cursor:pointer;color:#98cc02;"ng-click="openMealList()">Dodaj posiłek</div>
 		</div>
 	</div>
 
@@ -29,13 +29,14 @@
 	</div>
 	<div id="showingbutton">Lista zakupowa</div>
 	<div class="buttonContainer">
-		<button class="btn btn-success" ng-click='sendMail()' ng-disabled="list.length==0" >Wyślij email z listą</button>	
+		<button class="btn btn-success" ng-click='sendMail()' ng-disabled="list.length==0" style="background-color:#98cc02;border-color:#98cc02" >Wyślij email z listą</button>	
 	</div>
 </div>
 
 <div id="searchMeals" ng-show="meallistopen" ng-click="closeMealList()">
 	<div id='mealsList' ng-click="$event.stopPropagation();">
-		<div ng-if="meals.length==0" style="font-size:17px;font-weight:bold"> Nie wprowadziłeś żadnych posiłków. Dodaj je, by móc ułożyć plan!</div>
+		<span  ng-click="closeMealList()" class="glyphicon glyphicon-remove" style="color:red; float:right;cursor:pointer;margin:5px 5px"></span>
+		<div ng-if="meals.length==0" style="font-size:17px;font-weight:bold;padding:20px;"> Nie wprowadziłeś żadnych posiłków. Dodaj je, by móc ułożyć plan!</div>
 		<div ng-hide="meals.length==0" id="searchInput"><input class="removeOutline" ng-model="searchtext" placeholder="Wyszukaj posiłek"></input></div>
 		<div id="listWrapper">
 			<div class="listitem" ng-repeat="meal in meals | filter:searchtext" ng-click="addToMealsList(meal)">

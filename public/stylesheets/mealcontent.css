@@ -11,7 +11,7 @@
 }
 }
 .form-control:focus, .unitSelect:focus, .rightBarinput:focus{
-     border-color: #5cb85c !important; 
+     border-color: #98cc02 !important; 
     outline: 0 ;
 }
 input.rightBarinput::-webkit-input-placeholder {
@@ -43,7 +43,7 @@ input.rightBarinput::-webkit-input-placeholder {
 	cursor:pointer;
 }
 .mealName:hover{
-	background-color :rgb(57, 208, 97);
+	background-color :#98cc02;
 }
 .custom-padding{
 	padding:10px;
@@ -171,7 +171,7 @@ input.rightBarinput::-webkit-input-placeholder {
 	height:auto;
 }
 #formcontent > *:focus{
-	border:1px solid #60d502 ;
+	border:1px solid #98cc02 ;
 	outline:none;
 }
 #formcontent #ingredientsTitle{
@@ -221,22 +221,22 @@ input.rightBarinput::-webkit-input-placeholder {
 	display: none;
 }
 #formcontent #ingredientsList .ingredientsRow input:focus {
-	border-bottom:solid 1px #60D502;
+	border-bottom:solid 1px #98cc02;
 	outline:none;
 }
 #formcontent #ingredientsList .ingredientsRow select:focus {
-	border-bottom:solid 1px #60D502;
+	border-bottom:solid 1px #98cc02;
 	outline:none;
 }
 
 #formcontent i{
 	cursor:pointer;
-	color:#60D502;
+	color:#98cc02;
 	font-size:20px;
 }
 #formcontent button{
-	background-color: #60D502;
-	border-color:#60D502;
+	background-color: #98cc02;
+	border-color:#98cc02;
 	font-weight:bold;
 	margin-top:15px;
 	width:100%;
@@ -281,10 +281,10 @@ input.rightBarinput::-webkit-input-placeholder {
 	border:none;
 	border-radius:0%;
 	font-weight:700;
-	color:rgb(57, 208, 97);
+	color:#98cc02;
 }
 #searchInput input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-	color:rgb(57, 208, 97);
+	color:#98cc02;
 	font-weight:700;
   }
 
@@ -350,7 +350,7 @@ input.rightBarinput::-webkit-input-placeholder {
     left: 260px;
     cursor:pointer;
     z-index:99999;
-    border-left: 1px solid #5cb85c;
+    border-left: 1px solid #98cc02;
 }
 #mealList .currentList{
 	display:inline-block;

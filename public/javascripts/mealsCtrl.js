@@ -217,7 +217,6 @@ function($scope,$location,auth,$http,$q,dates,$document){
 
 	$scope.$on('$viewContentLoaded', function(){
 		//animations
-		console.log("xd")
 		var mealsList = document.getElementById("mealList")
 		var showingbutton = document.getElementById("showingPanel")
 		var isShow=false;

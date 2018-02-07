@@ -16,11 +16,7 @@ input{
 .editMealsChoice{
 	color:white;
 	background-color:rgba(0,0,0,0.4);	
-	position: absolute;
-    margin-left: 40px;
-    width: 100%;
-    right: 0;
-    top: 0;
+	height: 60px;
 	text-align:center;
 	font-size:17px;
 	margin-bottom:20px
@@ -32,6 +28,7 @@ input{
 	padding-left:1%;
 	padding-right:1%;
 	cursor:pointer;
+	height: 60px
 }
 .editMealsChoice > div:hover{
 	background-color:#252525;	
@@ -53,4 +50,11 @@ button{
 
 .floatRight{
 	float:none;
+}
+.blackx{
+	background-color:rgba(0, 0, 0, 0.2);
+	color:white
+}
+.green{
+	background-color:#98cc02
 }

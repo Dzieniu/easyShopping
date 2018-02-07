@@ -4,3 +4,8 @@
 .col-md-3{
 	position:static;
 }
+
+.btn-info{
+	background-color:#3D82FB !important;
+	border-color:#3D82FB !important;
+}

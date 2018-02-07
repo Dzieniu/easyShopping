@@ -5,24 +5,50 @@ function($scope,$location,auth,$http){
 
 	$scope.editmeal=false;
 	var currentEditedID;
-	$scope.currentChoice;
-	$scope.choiceButton="Dodaj posiłek"
-	$scope.newMealName = "Nazwa posiłku"
+	$scope.currentChoice="add";
+	$scope.choiceButton="DODAJ"
+	$scope.newMealName = ""
 	$scope.ingredients = [{name: "",count: 1,unit: "" }];
 
 	$scope.addMeal = function(){
 		postData = { name:$scope.newMealName,username:auth.currentUser(),products:$scope.ingredients};
 		if($scope.currentChoice=="add"){
-			$http.post("/mealslist", postData).success(function(data2,status) {
+			console.log("xd")
+			$http.post("/mealslist", postData).then(function(response) {
 				succesModalonEdit('Dodałeś posiłek','Dodaj kolejny, lub przejdź do układania planu');
 				$scope.ingredients = [{name: "",count: 1,unit: "" }];
-				$scope.newMealName = "Nazwa posiłku"
+				$scope.newMealName=""
+			},function(response){
+				var errormessage = '';
+				response.data.forEach(element => {
+					errormessage+=`<div style="display:block">&#9679;&nbsp;${element}</div>`
+				});
+				console.log(errormessage)
+				swal({
+					title:"Popraw błędy:",
+					type:"warning",
+					html: errormessage,
+				})
+				$scope.refresh();
 			});
 		}else{
-			$http.put("/mealslist/"+currentEditedID, postData).success(function() {
+			$http.put("/mealslist/"+currentEditedID, postData).then(function(response) {
 				succesModalonEdit('Posiłek został zedytowany','');
 				$scope.ingredients = [];
+				$scope.newMealName=""
 				$scope.refresh();
+			},function(response){
+				var errormessage = '';
+				response.data.forEach(element => {
+					errormessage+=`<div style="display:block">&#9679;&nbsp;${element}</div>`
+				});
+				console.log(errormessage)
+				swal({
+					title:"Popraw błędy:",
+					type:"warning",
+					html: errormessage,
+					showCloseButton : true
+				})
 			});
 		}
 		
@@ -52,14 +78,16 @@ function succesModalonEdit(message1,message2){
    		choiceElement.addClass('green');
    		var myEl = angular.element( document.querySelector( '#allMeals' ) );
 
-		$scope.editmeal = !$scope.editmeal
+		 
    		if(choice=='add'){
-   			$scope.choiceButton="Dodaj posiłek"
+			$scope.editmeal=false;
+   			$scope.choiceButton="DODAJ"
    			$scope.newMealName = "Nazwa posiłku"
 			$scope.ingredients = [{name: "",count: 1,unit: "" }];
    		}
    		if(choice=='edit'){
-   			$scope.choiceButton="Edytuj posiłek"
+			$scope.editmeal=true;
+   			$scope.choiceButton="EDYTUJ"
    			$scope.newMealName = 'Wybierz posiłek';
 			$scope.ingredients = [];
    		}
@@ -119,6 +147,8 @@ function succesModalonEdit(message1,message2){
 				'Posiłek został usunięty.',
 				'success'
 			)
+			$scope.ingredients = [];
+			$scope.newMealName
 		})
 	}
 
