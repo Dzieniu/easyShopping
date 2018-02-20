@@ -13,7 +13,6 @@ function($scope,$location,auth,$http){
 	$scope.addMeal = function(){
 		postData = { name:$scope.newMealName,username:auth.currentUser(),products:$scope.ingredients};
 		if($scope.currentChoice=="add"){
-			console.log("xd")
 			$http.post("/mealslist", postData).then(function(response) {
 				succesModalonEdit('Dodałeś posiłek','Dodaj kolejny, lub przejdź do układania planu');
 				$scope.ingredients = [{name: "",count: 1,unit: "" }];
@@ -23,7 +22,6 @@ function($scope,$location,auth,$http){
 				response.data.forEach(element => {
 					errormessage+=`<div style="display:block">&#9679;&nbsp;${element}</div>`
 				});
-				console.log(errormessage)
 				swal({
 					title:"Popraw błędy:",
 					type:"warning",
@@ -42,7 +40,6 @@ function($scope,$location,auth,$http){
 				response.data.forEach(element => {
 					errormessage+=`<div style="display:block">&#9679;&nbsp;${element}</div>`
 				});
-				console.log(errormessage)
 				swal({
 					title:"Popraw błędy:",
 					type:"warning",

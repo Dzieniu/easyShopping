@@ -89,7 +89,6 @@ function($scope, $state, auth,$interval,$location,$anchorScroll,){
     currentIteration=index;
   }
   var run = $interval(function(){
-    console.log("xd")
     $scope.chooseStep(currentIteration)
     currentIteration++;
     if(currentIteration==$scope.images.length){

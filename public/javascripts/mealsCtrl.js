@@ -211,9 +211,6 @@ function($scope,$location,auth,$http,$q,dates,$document){
 	$scope.closeMealList = function(){
 		$scope.meallistopen=false;
 	}
-	$scope.consolelog=function(value){
-		console.log(value)
-	}
 
 	$scope.$on('$viewContentLoaded', function(){
 		//animations

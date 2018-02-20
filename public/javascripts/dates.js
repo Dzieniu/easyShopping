@@ -26,8 +26,5 @@ dateInfo.getWeekBeginning = function(){
   return {start:day+'/'+month+'/'+year, end:endDay+'/'+endMonth+'/'+endYear}
 }
 
-
-console.log(dateInfo.getWeekBeginning());
-
 return dateInfo;
 }])
